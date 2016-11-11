@@ -16,6 +16,8 @@ static String grupo = "<551554, 551872, 551805, 551724>";
     Saida outSemantico = new Saida();
 }
 
+/******************* LEXICO *********************/
+
 IDENTIFICADOR : ('a'..'z' | 'A'..'Z' | '_')('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*
               ;
 
@@ -39,7 +41,9 @@ NAO_COMENTARIO: '{' ~('\r' | '\n' | '}')* '\n'
 ERRO          : . { stop("Linha " + getLine() +": simbolo nao identificado"); }
               ;
 
-programa      : declaracoes 'algoritmo' corpo 'fim_algortimo'
+/******************* SINTATICO ********************/
+
+programa      : declaracoes 'algoritmo' corpo 'fim_algoritmo'
               ;
 
 declaracoes   : (decl_local_global)*
@@ -67,7 +71,7 @@ ponteiros_opcionais
               : ('^')*
               ; 
 
-outros_ident  : ('.' identificador)*
+outros_ident  : ('.' identificador)?
               ;
 
 dimensao      : ('[' exp_aritmetica ']' dimensao)?
@@ -125,7 +129,7 @@ declaracoes_locais
 corpo         : declaracoes_locais comandos
               ;
 
-comandos      : (cmd comandos)?
+comandos      : (cmd)*
               ;
 
 cmd           : 'leia' '(' identificador mais_ident ')'
@@ -213,16 +217,16 @@ parcela_nao_unario
               ;
 
 outras_parcelas
-              : ('%' parcela outras_parcelas)?
+              : ('%' parcela)*
               ;
 
-chamada_partes: '(' expressao mais_expressao ')' | outros_ident dimensao
+chamada_partes: '(' expressao mais_expressao ')' | outros_ident dimensao  |
               ;
 
 exp_relacional: exp_aritmetica op_opcional
               ;
 
-op_opcional   : op_relacional exp_aritmetica
+op_opcional   : (op_relacional exp_aritmetica)?
               ;
 
 op_relacional : '=' | '<>' | '>=' | '<=' | '>' | '<'

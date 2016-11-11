@@ -1,4 +1,4 @@
-// Generated from src\la_compiler\LA.g4 by ANTLR 4.5.3
+// Generated from la_compiler\src\la_compiler\LA.g4 by ANTLR 4.5.3
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -43,7 +43,7 @@ public class LALexer extends Lexer {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'algoritmo'", "'fim_algortimo'", "'declare'", "'constante'", "':'", 
+		null, "'algoritmo'", "'fim_algoritmo'", "'declare'", "'constante'", "':'", 
 		"'='", "'tipo'", "','", "'^'", "'.'", "'['", "']'", "'literal'", "'inteiro'", 
 		"'real'", "'logico'", "'verdadeiro'", "'falso'", "'registro'", "'fim_registro'", 
 		"'procedimento'", "'('", "')'", "'fim_procedimento'", "'funcao'", "'fim_funcao'", 
@@ -247,8 +247,8 @@ public class LALexer extends Lexer {
 		"\u0090\u0091\7k\2\2\u0091\u0092\7v\2\2\u0092\u0093\7o\2\2\u0093\u0094"+
 		"\7q\2\2\u0094\4\3\2\2\2\u0095\u0096\7h\2\2\u0096\u0097\7k\2\2\u0097\u0098"+
 		"\7o\2\2\u0098\u0099\7a\2\2\u0099\u009a\7c\2\2\u009a\u009b\7n\2\2\u009b"+
-		"\u009c\7i\2\2\u009c\u009d\7q\2\2\u009d\u009e\7t\2\2\u009e\u009f\7v\2\2"+
-		"\u009f\u00a0\7k\2\2\u00a0\u00a1\7o\2\2\u00a1\u00a2\7q\2\2\u00a2\6\3\2"+
+		"\u009c\7i\2\2\u009c\u009d\7q\2\2\u009d\u009e\7t\2\2\u009e\u009f\7k\2\2"+
+		"\u009f\u00a0\7v\2\2\u00a0\u00a1\7o\2\2\u00a1\u00a2\7q\2\2\u00a2\6\3\2"+
 		"\2\2\u00a3\u00a4\7f\2\2\u00a4\u00a5\7g\2\2\u00a5\u00a6\7e\2\2\u00a6\u00a7"+
 		"\7n\2\2\u00a7\u00a8\7c\2\2\u00a8\u00a9\7t\2\2\u00a9\u00aa\7g\2\2\u00aa"+
 		"\b\3\2\2\2\u00ab\u00ac\7e\2\2\u00ac\u00ad\7q\2\2\u00ad\u00ae\7p\2\2\u00ae"+

@@ -1,4 +1,4 @@
-// Generated from src\la_compiler\LA.g4 by ANTLR 4.5.3
+// Generated from la_compiler\src\la_compiler\LA.g4 by ANTLR 4.5.3
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;

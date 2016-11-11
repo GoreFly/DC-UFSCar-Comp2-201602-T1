@@ -1,0 +1,6 @@
+Linha 13: erro sintatico proximo a -
+Linha 13: erro sintatico proximo a -
+Linha 13: erro sintatico proximo a +
+Linha 13: erro sintatico proximo a +
+Linha 13: erro sintatico proximo a )
+Fim da compilacao

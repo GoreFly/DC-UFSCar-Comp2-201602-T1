@@ -1,0 +1,11 @@
+Linha 25: erro sintatico proximo a ^
+Linha 25: erro sintatico proximo a ^
+Linha 25: erro sintatico proximo a +
+Linha 26: erro sintatico proximo a se
+Linha 26: erro sintatico proximo a ^
+Linha 26: erro sintatico proximo a %
+Linha 27: erro sintatico proximo a <
+Linha 27: erro sintatico proximo a -
+Linha 32: erro sintatico proximo a escreva
+Linha 33: erro sintatico proximo a fim_algoritmo
+Fim da compilacao

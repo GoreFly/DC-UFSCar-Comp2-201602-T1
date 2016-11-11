@@ -1,0 +1,7 @@
+Linha 15: erro sintatico proximo a <
+Linha 15: erro sintatico proximo a +
+Linha 15: erro sintatico proximo a e
+Linha 16: erro sintatico proximo a <
+Linha 16: erro sintatico proximo a +
+Linha 18: erro sintatico proximo a ehEquilatero
+Fim da compilacao
