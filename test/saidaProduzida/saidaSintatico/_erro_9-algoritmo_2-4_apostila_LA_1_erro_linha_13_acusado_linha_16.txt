@@ -1,3 +1,0 @@
-Linha 16: erro sintatico proximo a escreva
-Linha 18: erro sintatico proximo a fim_algoritmo
-Fim da compilacao

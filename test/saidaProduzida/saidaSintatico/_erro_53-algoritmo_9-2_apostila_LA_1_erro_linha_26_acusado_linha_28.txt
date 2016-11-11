@@ -1,3 +1,0 @@
-Linha 20: erro sintatico proximo a =
-Linha 28: erro sintatico proximo a algoritmo
-Fim da compilacao
