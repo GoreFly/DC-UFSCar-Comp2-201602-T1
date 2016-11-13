@@ -1,3 +1,2 @@
 Linha 8: erro sintatico proximo a <
-Linha 12: erro sintatico proximo a fim_algoritmo
 Fim da compilacao

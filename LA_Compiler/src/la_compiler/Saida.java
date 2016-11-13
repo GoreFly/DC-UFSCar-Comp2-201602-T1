@@ -1,19 +1,23 @@
+package la_compiler;
+
 /**
  *
  * @author daniel
  */
 public class Saida {
-    private static StringBuffer texto = new StringBuffer();
+    public boolean modificado = false;
+    private StringBuffer texto = new StringBuffer();
     
-    public static void println(String txt) {
+    public void println(String txt) {
+        modificado = true;
         texto.append(txt).append("\n");
     }
     
-    public static void clear() {
+    public void clear() {
         texto = new StringBuffer();
     }
     
-    public static String getTexto() {
+    public String getTexto() {
         return texto.toString();
     }
 }

@@ -36,9 +36,9 @@ ESPACOS       : (' ' | '\t' | '\r' | '\n') {  skip(); }
               ;
 
 NAO_COMENTARIO: '{' ~('\r' | '\n' | '}')* '\n'
-                { stop("Linha " + getLine() + ": comentario sem termino"); }
+                { stop("Linha " + getLine() + ": comentario nao fechado"); }
               ;
-ERRO          : . { stop("Linha " + getLine() +": simbolo nao identificado"); }
+ERRO          : . { stop("Linha " + getLine() + ": " + getText() + " - simbolo nao identificado"); }
               ;
 
 /******************* SINTATICO ********************/

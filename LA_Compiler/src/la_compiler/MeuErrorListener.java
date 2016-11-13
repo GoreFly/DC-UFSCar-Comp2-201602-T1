@@ -1,3 +1,5 @@
+package la_compiler;
+
 import java.util.BitSet;
 import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.Parser;
@@ -27,7 +29,9 @@ public class MeuErrorListener implements ANTLRErrorListener {
         String tkt = t.getText();
         tkt = (tkt.equals("<EOF>")) ? "EOF" : tkt;
         
+        if(!saida.modificado) {
         saida.println("Linha " + i + ": erro sintatico proximo a " + tkt);
+        }
     }
 
     @Override

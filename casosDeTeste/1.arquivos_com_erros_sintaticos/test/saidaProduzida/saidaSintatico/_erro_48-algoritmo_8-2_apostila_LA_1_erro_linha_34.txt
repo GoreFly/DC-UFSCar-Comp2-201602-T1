@@ -1,4 +1,2 @@
 Linha 34: erro sintatico proximo a escreva
-Linha 34: erro sintatico proximo a 34
-Linha 35: erro sintatico proximo a fim_se
 Fim da compilacao

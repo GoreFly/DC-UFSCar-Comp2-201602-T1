@@ -1,3 +1,2 @@
 Linha 8: erro sintatico proximo a ]
-Linha 13: erro sintatico proximo a valor1
 Fim da compilacao

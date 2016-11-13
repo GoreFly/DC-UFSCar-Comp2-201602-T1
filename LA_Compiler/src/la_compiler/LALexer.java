@@ -1,4 +1,5 @@
 // Generated from la_compiler\src\la_compiler\LA.g4 by ANTLR 4.5.3
+package la_compiler;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -165,14 +166,14 @@ public class LALexer extends Lexer {
 	private void NAO_COMENTARIO_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
 		case 2:
-			 stop("Linha " + getLine() + ": comentario sem termino"); 
+			 stop("Linha " + getLine() + ": comentario nao fechado"); 
 			break;
 		}
 	}
 	private void ERRO_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
 		case 3:
-			 stop("Linha " + getLine() +": simbolo nao identificado"); 
+			 stop("Linha " + getLine() + ": " + getText() + " - simbolo nao identificado"); 
 			break;
 		}
 	}

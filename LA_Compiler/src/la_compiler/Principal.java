@@ -1,3 +1,7 @@
+package la_compiler;
+
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,6 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 
 /**
  *
@@ -30,8 +35,11 @@ public class Principal {
         parser.removeErrorListeners();
         parser.addErrorListener(mel);
         
+        try {
         parser.programa();
-        
+        } catch(ParseCancellationException pce) {
+            out.println(pce.getMessage());
+        }
         out.println("Fim da compilacao");
         
         PrintWriter pw = new PrintWriter(arquivoSaida);
