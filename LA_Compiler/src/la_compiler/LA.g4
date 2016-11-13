@@ -138,7 +138,7 @@ cmd           : 'leia' '(' identificador mais_ident ')'
               | 'caso' exp_aritmetica 'seja' selecao senao_opcional 'fim_caso'
               | 'para' IDENTIFICADOR '<-' exp_aritmetica 'ate' exp_aritmetica 'faca' comandos 'fim-para'
               | 'enquanto' expressao 'faca' comandos 'fim_enquanto'
-              | 'faca' comandos 'ate'
+              | 'faca' comandos 'ate' expressao
               | 'ˆ' IDENTIFICADOR outros_ident dimensao '<-' expressao
               | IDENTIFICADOR chamada_atribuicao
               | 'retorne' expressao
