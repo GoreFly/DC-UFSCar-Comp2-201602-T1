@@ -1,19 +1,16 @@
 grammar LA;
 
-@members{
-static String grupo = "<551554, 551872, 551805, 551724>"; 
+@members {
+  static String grupo = "<551554, 551872, 551805, 551724>"; 
 
-    private void stop(String a){
+    private void stop(String a) {
         throw new ParseCancellationException(a);
     }
 
-    private void erroSemantico(String a){
-        outSemantico.println(a);
-    }
-
     PilhaDeTabelas pilhaDeTabelas = new PilhaDeTabelas();
-
-    Saida outSemantico = new Saida();
+    PilhaDeTabelas tabelaDeRegistros = new PilhaDeTabelas();
+    TabelaDeSimbolos tabelaDeTipos = new TabelaDeSimbolos("tipos");
+    String erro = "";
 }
 
 /******************* LEXICO *********************/
@@ -41,9 +38,27 @@ NAO_COMENTARIO: '{' ~('\r' | '\n' | '}')* '\n'
 ERRO          : . { stop("Linha " + getLine() + ": " + getText() + " - simbolo nao identificado"); }
               ;
 
-/******************* SINTATICO ********************/
+/******************* SINTATICO E SEMÂNTICO ********************/
 
-programa      : declaracoes 'algoritmo' corpo 'fim_algoritmo'
+programa      : 
+              {
+                // tabela de símbolos global e tipos padrão da linguaguem
+                pilhaDeTabelas.empilhar(new TabelaDeSimbolos("global"));
+                tabelaDeTipos.adicionarSimbolo("inteiro", "inteiro");
+                tabelaDeTipos.adicionarSimbolo("real", "real");
+                tabelaDeTipos.adicionarSimbolo("literal", "literal");
+                tabelaDeTipos.adicionarSimbolo("logico", "logico");
+              }
+
+              declaracoes 'algoritmo' corpo 'fim_algoritmo'
+
+              {
+                // desempilha a tabela global
+                pilhaDeTabelas.desempilha();
+                // caso o erro não esteja vazio, significa que a semântica não está correta
+                // "erro" terá informações sobre o erro
+                if (erro != "") throw new RuntimeException(erro);
+              }
               ;
 
 declaracoes   : (decl_local_global)*
@@ -54,27 +69,128 @@ decl_local_global
               ;
 
 declaracao_local
-              : 'declare' variavel | 'constante' IDENTIFICADOR ':' tipo_basico '=' valor_constante
-              | 'tipo' IDENTIFICADOR ':' tipo
+              : 'declare' variavel 
+              {
+                for (String s: $variavel.nomes) {
+                  if (pilhaDeTabelas.topo().existeSimbolos(s))
+                    // necessário verificar se a variável ja foi declarada antes
+                    erro += "Linha " + $variavel.linha + ": identificador  "+ s +" ja declarado anteriormente\n";
+                  else{
+                    // verifica se a variável é de um tipo válido. Caso for válido adicionamos ela na tabela de símbolos do escopo atual
+                    if (TabelaDeTipos.existeSimbolos($variavel.tipoSimbolo)) {
+                      pilhaDeTabelas.topo().adicionarSimbolo(s, $variavel.tipoSimbolo);
+                      if (TabelasDeRegistros.existeTabela($variavel.tipoSimbolo)!=null) {
+                        // caso o tipo da variável for um registro, declaramos os componentes desse tipo na variável
+                        TabelaDeSimbolos tabelaRegistro = TabelasDeRegistros.existeTabela($variavel.tipoSimbolo);
+                        for (EntradaTabelaDeSimbolos t: tabelaRegistro.getSimbolos()){
+                          pilhaDeTabelas.topo().adicionarSimbolo(s+"."+t.getNome(), t.getTipo());
+                        }
+                      } else{
+                        // se o tipo não for identificado pode ser que ele tenha ido declarado como um registro
+                        // Ex: tipo: <registro> | <tipo_extendido>
+                        if (TabelasDeRegistros.existeTabela("registro")!=null){
+                          TabelaDeSimbolos tabelaRegistro = TabelasDeRegistros.existeTabela("registro");
+                          for (EntradaTabelaDeSimbolos t: tabelaRegistro.getSimbolos()){
+                            pilhaDeTabelas.topo().adicionarSimbolo(s+"."+t.getNome(), t.getTipo());
+                          }
+                        }
+                      }
+                    } else{
+                      // caso o tipo não tenha sido identificado, a variável erro identifica como "tipo não declarado"
+                      erro = += "Linha " + $variavel.linha + ": tipo " + $variavel.tipoSimbolo + "nao declarado \n";
+                      pilhaDeTabelas.topo().adicionarSimbolo(s, $variavel.tipoSimbolo);
+                    }
+                  }
+
+                }
+              }
+
+              | 'constante' id=IDENTIFICADOR ':' tb=tipo_basico '=' valor_constante
+              {
+                // verifica se a nova variável já foi declarada antes no escopo atual
+                // caso não tenha sido, adicionamos ela na tabela de simbolos do escopo atual
+                if (pilhaDeTabelas.topo().existeSimbolos($id.getText()))
+                  erro += "Linha " + $id.getLine() + ": identificador " + $id.getText() + " ja declarado anteriormente\n";
+                else
+                  pilhaDeTabelas.topo().adicionarSimbolo($id.getText(), $tb.tipoSimbolo);
+              }
+
+              | 'tipo' id=IDENTIFICADOR ':' t=tipo[$id.getText()]
+              {
+                // verifica se a nova variável já foi declarada antes no escopo atual
+                // caso não tenha sido, adicionamos ela na tabela de simbolos do escopo atual
+                // além disso, adicionamos a variável na tabelaDeTipos, afinal é de um novo tipo
+                if (pilhaDeTabelas.topo().existeSimbolos($id.getText()))
+                  erro += "Linha " + $id.getLine() + ": identificador " + $id.getText() + " ja declarado anteriormente\n";
+                else{
+                  pilhaDeTabelas.topo().adicionarSimbolo($id.getText(), $t.tipoSimbolo);
+                  tabelaDeTipos.adicionarSimbolo($id.getText(), $t.tipoSimbolo);
+                }
+
+              }
               ;
 
-variavel      : IDENTIFICADOR dimensao mais_var ':' tipo
+variavel      // retorna  lista de identificadores, tipo deles e a linha em que foram declarados 
+              returns [List<String> nomes, String tipoSimbolo, int linha] 
+              @init {$nomes = new ArrayList<String>(); $tipoSimbolo = ""; $linha = -1;}
+              : id=IDENTIFICADOR dimensao mv=mais_var ':' tp=tipo[$tipoSimbolo]
+              {
+                int i = 0;
+                $tipoSimbolo = $tp.tipoSimbolo;
+                $nomes.add($id.getText());
+                $nomes.addAll($mv.nomes);
+                if ($mv.linha == -1)
+                  $linha = $id.getLine();
+                else
+                  $linha = $mv.linha;
+              }
               ;
 
-mais_var      : (',' IDENTIFICADOR dimensao mais_var)?
+mais_var      // pode retornar uma lista vazia por ser recursiva e não obrigatória
+              returns [List<string> nomes, int linha]
+              @init {$nomes = new ArrayList<String>(); $linha = -1}
+              : (',' id=IDENTIFICADOR
+              {
+                if (!pilhaDeTabelas.existeSimbolo($id.getText()))
+                {
+                  $nomes.add($id.getText());
+                  $linha = $id.getLine();
+                }
+                else
+                {
+                  // retorna erro quando a variável já foi declarada antes
+                  erro += "Linha " + $id.getLine() + ": identificador " + $id.getText() + " ja declarado anteriormente\n";
+                }
+              }
+              dimensao mais_var)?
               ;
 
-identificador : ponteiros_opcionais IDENTIFICADOR dimensao outros_ident
+identificador //retorna o nome, o tipo e a linha em que foi declarado o identificador
+              returns [String txt, int linha, String tipoSimbolo]
+              @init{$txt = ""; $linha = -1; $tipoSimbolo = "NONE";}
+              :ponteiros_opcionais id=IDENTIFICADOR dimensao id2=outros_ident
+              {
+                $txt += $id.text + $id2.txt;
+                $linha = $id.getLine();
+                $tipoSimbolo = pilhaDeTabelas.topo().getTipoSimbolo($txt);
+              }
               ;
 
 ponteiros_opcionais
               : ('^')*
               ; 
 
-outros_ident  : ('.' identificador)?
+outros_ident  //retorna o nome do campo
+              returns [ String txt]
+              @init{ $txt = ""; }
+              : ('.' id=identificador)?
+              {
+                $txt = "."+$id.txt;
+              }
               ;
 
-dimensao      : ('[' exp_aritmetica ']' dimensao)?
+dimensao      //retorna um campo texto para operacoes com vetores
+              : ('[' exp_aritmetica ']' dimensao)?
               ;
 
 tipo          : registro | tipo_estendido
