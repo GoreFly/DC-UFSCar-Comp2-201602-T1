@@ -1,4 +1,4 @@
-// Generated from la_compiler\src\la_compiler\LA.g4 by ANTLR 4.5.3
+// Generated from src\la_compiler\LA.g4 by ANTLR 4.5.3
 package la_compiler;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
@@ -97,19 +97,16 @@ public class LALexer extends Lexer {
 	}
 
 
-	static String grupo = "<551554, 551872, 551805, 551724>"; 
+	  static String grupo = "<551554, 551872, 551805, 551724>"; 
 
-	    private void stop(String a){
+	    private void stop(String a) {
 	        throw new ParseCancellationException(a);
 	    }
 
-	    private void erroSemantico(String a){
-	        outSemantico.println(a);
-	    }
-
 	    PilhaDeTabelas pilhaDeTabelas = new PilhaDeTabelas();
-
-	    Saida outSemantico = new Saida();
+	    PilhaDeTabelas tabelaDeRegistros = new PilhaDeTabelas();
+	    TabelaDeSimbolos tabelaDeTipos = new TabelaDeSimbolos("tipos");
+	    String erro = "";
 
 
 	public LALexer(CharStream input) {

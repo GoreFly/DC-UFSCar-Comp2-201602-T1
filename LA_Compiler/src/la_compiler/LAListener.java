@@ -1,4 +1,4 @@
-// Generated from la_compiler\src\la_compiler\LA.g4 by ANTLR 4.5.3
+// Generated from src\la_compiler\LA.g4 by ANTLR 4.5.3
 package la_compiler;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -198,15 +198,15 @@ public interface LAListener extends ParseTreeListener {
 	 */
 	void exitDeclaracao_global(LAParser.Declaracao_globalContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link LAParser#parametros_opicional}.
+	 * Enter a parse tree produced by {@link LAParser#parametros_opcional}.
 	 * @param ctx the parse tree
 	 */
-	void enterParametros_opicional(LAParser.Parametros_opicionalContext ctx);
+	void enterParametros_opcional(LAParser.Parametros_opcionalContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link LAParser#parametros_opicional}.
+	 * Exit a parse tree produced by {@link LAParser#parametros_opcional}.
 	 * @param ctx the parse tree
 	 */
-	void exitParametros_opicional(LAParser.Parametros_opicionalContext ctx);
+	void exitParametros_opcional(LAParser.Parametros_opcionalContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link LAParser#parametro}.
 	 * @param ctx the parse tree

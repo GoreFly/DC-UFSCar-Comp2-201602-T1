@@ -1,4 +1,4 @@
-// Generated from la_compiler\src\la_compiler\LA.g4 by ANTLR 4.5.3
+// Generated from src\la_compiler\LA.g4 by ANTLR 4.5.3
 package la_compiler;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -244,13 +244,13 @@ public class LABaseListener implements LAListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterParametros_opicional(LAParser.Parametros_opicionalContext ctx) { }
+	@Override public void enterParametros_opcional(LAParser.Parametros_opcionalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitParametros_opicional(LAParser.Parametros_opicionalContext ctx) { }
+	@Override public void exitParametros_opcional(LAParser.Parametros_opcionalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
