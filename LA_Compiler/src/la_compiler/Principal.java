@@ -36,7 +36,7 @@ public class Principal {
         parser.addErrorListener(mel);
         
         try {
-            parser.programa();
+        parser.programa();
         } catch(ParseCancellationException pce) {
             out.println(pce.getMessage());
         }
