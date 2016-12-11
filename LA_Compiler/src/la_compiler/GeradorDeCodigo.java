@@ -2,32 +2,32 @@ package la_compiler;
 
 public class GeradorDeCodigo extends LABaseListener {
 	
-	/*SaidaParser saida;
+	StringBuffer saida;
 
-	public GeradorDeCodigo(SaidaParser saida) {
+	public GeradorDeCodigo(StringBuffer saida) {
 		this.saida = saida;
 	}
 
 	@Override
 	public void enterPrograma(LAParser.ProgramaContext ctx) {
-		saida.println("#include <stdio.h>");
-		saida.println("#include <stdlib.h>");
-		saida.println("#include <int main(){");
+		saida.append("#include <stdio.h>\n");
+		saida.append("#include <stdlib.h>\n");
+		saida.append("#include <int main(){\n");
 	}
 
 	@Override
 	public void exitPrograma(LAParser.ProgramaContext ctx) {
-		saida.println("return 0");
-		saida.println("}");
+		saida.append("return 0\n");
+		saida.append("}\n");
 	}
 
 	@Override
-	public void enterCmd(LAParser.ProgramaContext ctx) {
-		if (ctx.tipoCmd.equals("leia")) {
-			saida.println("scanf(\"%" + verifica_tipo(ctx.expressao().tipoSimbolo) + "\"," + ctx.expressao().txt + ");");
+	public void enterCmd(LAParser.CmdContext ctx) {
+		if (ctx.tipoComando.equals("leia")) {
+			saida.append("scanf(\"%" + verifica_tipo(ctx.expressao().tipoSimbolo) + "\"," + ctx.expressao().simbolo + ");\n");
 		} else {
-			if (ctx.tipoCmd.equals("se"))
-				saida.println("if(<expressao>){");
+			if (ctx.tipoComando.equals("se"))
+				saida.append("if(<expressao>){\n");
 		}
 	}
 
@@ -37,19 +37,29 @@ public class GeradorDeCodigo extends LABaseListener {
 	}
 
 	@Override
-	public void enterDecl_local(LAParser.Decl_localContext ctx) {
-		if(ctx.variavel.tipoSimbolo.equals("inteiro"))
-			saida.println("int " + ctx.variavel.nomes.toString().substring(1, ctx.variavel.nomes.toString().length()-1) + ";");
-		else {
-			if(ctx.variavel.tipoSimbolo.equals("real"))
-				saida.println("float " + ctx.variavel.nomes.toString().substring(1, ctx.variavel.nomes.toString().length()-1) + ";");
-			else {
-				if(ctx.variavel.tipoSimbolo.equals("literal"))
-					saida.println("char " + ctx.variavel.nomes.toString().substring(1, ctx.variavel.nomes.toString().length()-1) + "[80]" + ";");
-				else
-					if(ctx.variavel.tipoSimbolo.equals("logico"))
-						saida.println("bool " + ctx.variavel.nomes.toString.substring(1, ctx.variavel.nomes.toString().length()-1) + ";");
-			}
+	public void enterDeclaracao_local(LAParser.Declaracao_localContext ctx) {
+		if(ctx.variavel.tipoSimbolo.equals("inteiro")) {
+                    saida.append("int "); 
+                    saida.append(ctx.variavel.identificadores.toString().substring(1, ctx.variavel.identificadores.toString().length()-1));
+                    saida.append(";\n");
+                } else {
+                    if(ctx.variavel.tipoSimbolo.equals("real")) {
+                        saida.append("float ");
+                        saida.append(ctx.variavel.identificadores.toString().substring(1, ctx.variavel.identificadores.toString().length()-1));
+                        saida.append(";\n");
+                    } else {
+			if(ctx.variavel.tipoSimbolo.equals("literal")) {
+                            saida.append("char ");
+                            saida.append(ctx.variavel.identificadores.toString().substring(1, ctx.variavel.identificadores.toString().length()-1));
+                            saida.append("[80];\n");
+                        } else {
+                            if(ctx.variavel.tipoSimbolo.equals("logico")) {
+                                saida.append("bool ");
+                                saida.append(ctx.variavel.identificadores.toString().substring(1, ctx.variavel.identificadores.toString().length()-1));
+                                saida.append(";\n");
+                            }
+                        }
+                    }
 		}
 	}
 
@@ -66,5 +76,5 @@ public class GeradorDeCodigo extends LABaseListener {
 			}
 		}
 		return 'd';
-	}*/
+	}
 }
