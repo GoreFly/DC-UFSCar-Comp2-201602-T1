@@ -71,7 +71,7 @@ declaracao_local
                   for (String s : $variavel.identificadores) {
                     if (pilhaDeTabelas.topo().existeSimbolo(s))
                       // necessário verificar se a variável ja foi declarada antes
-                      erro += "Linha " + $variavel.linha + ": identificador  "+ s +" ja declarado anteriormente\n";
+                      erro += "Linha " + $variavel.linha + ": identificador "+ s +" ja declarado anteriormente\n";
                     else {
                       // verifica se a variável é de um tipo válido. Caso for válido adicionamos ela na tabela de símbolos do escopo atual
                       if (tabelaDeTipos.existeSimbolo($variavel.tipoSimbolo)) {
@@ -111,7 +111,6 @@ declaracao_local
                 }
               | 'tipo' id=IDENTIFICADOR ':' t=tipo[$id.getText()]
                 {
-                   erro += "ENTROU NO TIPO\n";
                   // verifica se a nova variável já foi declarada antes no escopo atual
                   // caso não tenha sido, adicionamos ela na tabela de simbolos do escopo atual
                   // além disso, adicionamos a variável na tabelaDeTipos, afinal é de um novo tipo
@@ -472,7 +471,13 @@ chamada_atribuicao [String identificadorInicial]
                     // verifica se os tipos sao compativeis
                     String tpi = pilhaDeTabelas.topo().getTipoSimbolo($identificadorInicial + $oid.simbolo);
                     String te = $exp.tipoSimbolo;
-                    if (!(tpi.equals(te) || (tpi.equals("inteiro") || tpi.equals("real")) && (te.equals("real") || te.equals("inteiro"))))
+                    String ti = null;
+
+                    if(tabelaDeRegistros.existeTabela(te)!=null) {
+                        TabelaDeSimbolos t = tabelaDeRegistros.existeTabela(te);
+                        ti = t.getTipoSimbolo(tpi);
+                    }
+                    if (!(tpi.equals(te) || (tpi.equals("inteiro") && te.equals("real") || tpi.equals("real")) && (te.equals("inteiro") || ti != null)))
                            erro += "Linha " + $atr.getLine() + ": atribuicao nao compativel para " + $identificadorInicial + $oid.simbolo + $dim.simbolo +"\n";
                   }
                 }
@@ -611,7 +616,7 @@ parcela_unario  // retorna um símbolo, seu tipo e a linha em que foi declarado
                     $simbolo += $ide2.getText() + $cpa.outrosIdentificadores;
                     $linha = $ide2.getLine();
                     if (!pilhaDeTabelas.existeSimbolo($simbolo)){ 
-                      erro += "Linha " + $ide2.getLine() + ": identificador " + $simbolo + " nao declarado \n";
+                      erro += "Linha " + $ide2.getLine() + ": identificador " + $simbolo + " nao declarado\n";
                     
                     } else
                     {

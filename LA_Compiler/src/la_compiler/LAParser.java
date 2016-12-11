@@ -369,7 +369,7 @@ public class LAParser extends Parser {
 				                  for (String s : ((Declaracao_localContext)_localctx).variavel.identificadores) {
 				                    if (pilhaDeTabelas.topo().existeSimbolo(s))
 				                      // necessário verificar se a variável ja foi declarada antes
-				                      erro += "Linha " + ((Declaracao_localContext)_localctx).variavel.linha + ": identificador  "+ s +" ja declarado anteriormente\n";
+				                      erro += "Linha " + ((Declaracao_localContext)_localctx).variavel.linha + ": identificador "+ s +" ja declarado anteriormente\n";
 				                    else {
 				                      // verifica se a variável é de um tipo válido. Caso for válido adicionamos ela na tabela de símbolos do escopo atual
 				                      if (tabelaDeTipos.existeSimbolo(((Declaracao_localContext)_localctx).variavel.tipoSimbolo)) {
@@ -437,7 +437,6 @@ public class LAParser extends Parser {
 				setState(152);
 				((Declaracao_localContext)_localctx).t = tipo(((Declaracao_localContext)_localctx).id.getText());
 
-				                   erro += "ENTROU NO TIPO\n";
 				                  // verifica se a nova variável já foi declarada antes no escopo atual
 				                  // caso não tenha sido, adicionamos ela na tabela de simbolos do escopo atual
 				                  // além disso, adicionamos a variável na tabelaDeTipos, afinal é de um novo tipo
@@ -2325,7 +2324,13 @@ public class LAParser extends Parser {
 				                    // verifica se os tipos sao compativeis
 				                    String tpi = pilhaDeTabelas.topo().getTipoSimbolo(_localctx.identificadorInicial + ((Chamada_atribuicaoContext)_localctx).oid.simbolo);
 				                    String te = ((Chamada_atribuicaoContext)_localctx).exp.tipoSimbolo;
-				                    if (!(tpi.equals(te) || (tpi.equals("inteiro") || tpi.equals("real")) && (te.equals("real") || te.equals("inteiro"))))
+				                    String ti = null;
+
+				                    if(tabelaDeRegistros.existeTabela(te)!=null) {
+				                        TabelaDeSimbolos t = tabelaDeRegistros.existeTabela(te);
+				                        ti = t.getTipoSimbolo(tpi);
+				                    }
+				                    if (!(tpi.equals(te) || (tpi.equals("inteiro") && te.equals("real") || tpi.equals("real")) && (te.equals("inteiro") || ti != null)))
 				                           erro += "Linha " + ((Chamada_atribuicaoContext)_localctx).atr.getLine() + ": atribuicao nao compativel para " + _localctx.identificadorInicial + ((Chamada_atribuicaoContext)_localctx).oid.simbolo + ((Chamada_atribuicaoContext)_localctx).dim.simbolo +"\n";
 				                  }
 				                
@@ -3275,7 +3280,7 @@ public class LAParser extends Parser {
 				                    _localctx.simbolo += ((Parcela_unarioContext)_localctx).ide2.getText() + ((Parcela_unarioContext)_localctx).cpa.outrosIdentificadores;
 				                    ((Parcela_unarioContext)_localctx).linha =  ((Parcela_unarioContext)_localctx).ide2.getLine();
 				                    if (!pilhaDeTabelas.existeSimbolo(_localctx.simbolo)){ 
-				                      erro += "Linha " + ((Parcela_unarioContext)_localctx).ide2.getLine() + ": identificador " + _localctx.simbolo + " nao declarado \n";
+				                      erro += "Linha " + ((Parcela_unarioContext)_localctx).ide2.getLine() + ": identificador " + _localctx.simbolo + " nao declarado\n";
 				                    
 				                    } else
 				                    {
