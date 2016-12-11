@@ -1,4 +1,4 @@
-// Generated from src\la_compiler\LA.g4 by ANTLR 4.5.3
+// Generated from src/la_compiler/LA.g4 by ANTLR 4.5.3
 package la_compiler;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -392,7 +392,7 @@ public class LAParser extends Parser {
 				                        }
 				                      } else {
 				                        // caso o tipo não tenha sido identificado, a variável erro identifica como "tipo não declarado"
-				                        erro += "Linha " + ((Declaracao_localContext)_localctx).variavel.linha + ": tipo " + ((Declaracao_localContext)_localctx).variavel.tipoSimbolo + "nao declarado \n";
+				                        erro += "Linha " + ((Declaracao_localContext)_localctx).variavel.linha + ": tipo " + ((Declaracao_localContext)_localctx).variavel.tipoSimbolo + " nao declarado\n";
 				                        pilhaDeTabelas.topo().adicionarSimbolo(s, ((Declaracao_localContext)_localctx).variavel.tipoSimbolo);
 				                      }
 				                    }

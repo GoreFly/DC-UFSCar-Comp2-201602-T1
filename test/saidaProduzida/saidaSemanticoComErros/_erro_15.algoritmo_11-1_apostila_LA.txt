@@ -1,0 +1,2 @@
+Linha 80: erro sintatico proximo a mediaVinhos
+Fim da compilacao

@@ -35,7 +35,7 @@ ESPACOS       : (' ' | '\t' | '\r' | '\n') {  skip(); }
 NAO_COMENTARIO: '{' ~('\r' | '\n' | '}')* '\n'
                 { stop("Linha " + getLine() + ": comentario nao fechado"); }
               ;
-ERRO          : . { stop("Linha " + getLine() + ": " + getText() + " - simbolo nao identificado"); }
+ERRO          : . { stop("Linha " + getLine() + ": " + getText() + " - simbolo nao identificado\n"); }
               ;
 
 /******************* SINTATICO E SEMÂNTICO ********************/
@@ -94,7 +94,7 @@ declaracao_local
                         }
                       } else {
                         // caso o tipo não tenha sido identificado, a variável erro identifica como "tipo não declarado"
-                        erro += "Linha " + $variavel.linha + ": tipo " + $variavel.tipoSimbolo + "nao declarado \n";
+                        erro += "Linha " + $variavel.linha + ": tipo " + $variavel.tipoSimbolo + " nao declarado\n";
                         pilhaDeTabelas.topo().adicionarSimbolo(s, $variavel.tipoSimbolo);
                       }
                     }

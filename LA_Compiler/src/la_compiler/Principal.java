@@ -37,8 +37,10 @@ public class Principal {
         
         try {
             parser.programa();
-        } catch(ParseCancellationException pce) {
-            out.println(pce.getMessage());
+        } 
+        catch(RuntimeException re) {
+            if(re.getMessage() != null && !out.modificado)
+                out.print(re.getMessage());
         }
         out.println("Fim da compilacao");
         

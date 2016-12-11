@@ -1,0 +1,10 @@
+Linha 9: identificador valorPago nao declarado
+Linha 12: identificador porcentagemGarcom nao declarado
+Linha 13: identificador valorPago nao declarado 
+Linha 13: identificador porcentagemGarcom nao declarado 
+Linha 13: identificador troco nao declarado
+Linha 17: identificador totalAlimento nao declarado 
+Linha 17: identificador porcentagemGarcom nao declarado 
+Linha 19: identificador valorPago nao declarado 
+Linha 20: identificador troco nao declarado 
+Fim da compilacao

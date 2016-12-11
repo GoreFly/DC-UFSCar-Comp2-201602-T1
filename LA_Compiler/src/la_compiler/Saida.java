@@ -20,4 +20,9 @@ public class Saida {
     public String getTexto() {
         return texto.toString();
     }
+
+    void print(String message) {
+        modificado = true;
+        texto.append(message);
+    }
 }
