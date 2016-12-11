@@ -58,7 +58,7 @@ programa      : {
                 }
               ;
 
-declaracoes   : (decl_local_global)*
+declaracoes   : (decl_local_global)* 
               ;
 
 decl_local_global
@@ -83,7 +83,7 @@ declaracao_local
                             pilhaDeTabelas.topo().adicionarSimbolo(s+"."+t.getNome(), t.getTipo());
                           }
                         } else {
-                          // se o tipo não for identificado pode ser que ele tenha ido declarado como um registro
+                          // se o tipo não for identificado pode ser que ele tenha sido declarado como um registro
                           // Ex: tipo: <registro> | <tipo_extendido>
                           if (tabelaDeRegistros.existeTabela("registro")!=null){
                             TabelaDeSimbolos tabelaDoRegistro = tabelaDeRegistros.existeTabela("registro");
@@ -111,10 +111,11 @@ declaracao_local
                 }
               | 'tipo' id=IDENTIFICADOR ':' t=tipo[$id.getText()]
                 {
+                   erro += "ENTROU NO TIPO\n";
                   // verifica se a nova variável já foi declarada antes no escopo atual
                   // caso não tenha sido, adicionamos ela na tabela de simbolos do escopo atual
                   // além disso, adicionamos a variável na tabelaDeTipos, afinal é de um novo tipo
-                  if (pilhaDeTabelas.topo().existeSimbolo($id.getText()))
+                  if (pilhaDeTabelas.topo().existeSimbolo($id.getText())) 
                     erro += "Linha " + $id.getLine() + ": identificador " + $id.getText() + " ja declarado anteriormente\n";
                   else{
                     pilhaDeTabelas.topo().adicionarSimbolo($id.getText(), $t.tipoSimbolo);
@@ -155,7 +156,7 @@ mais_var      // pode retornar uma lista vazia por ser recursiva e não obrigat�
                     erro += "Linha " + $id.getLine() + ": identificador " + $id.getText() + " ja declarado anteriormente\n";
                   }
                 }
-              dimensao mais_var)?
+              dimensao)*
               ;
 
 identificador //retorna o nome, o tipo e a linha em que foi declarado o identificador
@@ -290,6 +291,7 @@ registro      [String nomeRegistro] returns[String tipoRegistro, List<String> id
                     tabelaDeRegistros.topo().adicionarSimbolo(s2, $mais_variaveis.tipoSimbolo);
                     $identificadores.add(s2);
                   }
+                  $tipoRegistro = $variavel.tipoSimbolo;
                 } 
               'fim_registro'
                 {
@@ -380,12 +382,14 @@ cmd           returns [String tipoComando]
               : 'leia' '(' ide1=identificador mid1=mais_ident 
                 { 
                   // verifica se simbolos já foram declarados
-                  if(!pilhaDeTabelas.existeSimbolo($ide1.simbolo))
+                  if(!pilhaDeTabelas.existeSimbolo($ide1.simbolo)) {
                     erro += "Linha " + $ide1.linha + ": identificador " + $ide1.simbolo + " nao declarado\n";
+                  }
                   for (String s : $mid1.identificadores)
                   {
-                    if(!pilhaDeTabelas.existeSimbolo(s))
+                    if(!pilhaDeTabelas.existeSimbolo(s)) {
                       erro+="Linha " + $ide1.linha + ": identificador " + s + " nao declarado\n";
+                    }
                   }    
                 }
               ')' {$tipoComando = "leia";}
@@ -425,8 +429,9 @@ cmd           returns [String tipoComando]
               | ide3=IDENTIFICADOR chamada_atribuicao[$ide3.text]
                 {
                   // verifica se o simbolo ja foi declarado
-                  if (!pilhaDeTabelas.existeSimbolo($ide3.getText()))
+                  if (!pilhaDeTabelas.existeSimbolo($ide3.getText())) {
                     erro += "Linha " + $ide3.getLine() + ": identificador " + $ide3.getText() + " nao declarado\n";
+                  }
                 }
               | ret='retorne' expressao
                 {
@@ -593,8 +598,9 @@ parcela_unario  // retorna um símbolo, seu tipo e a linha em que foi declarado
                     $simbolo += $ide1.getText() + $oid.simbolo;
                     $linha = $ide1.getLine();
                    
-                    if(!pilhaDeTabelas.existeSimbolo($ide1.getText() + $oid.simbolo))
+                    if(!pilhaDeTabelas.existeSimbolo($ide1.getText() + $oid.simbolo)) {
                         erro += "Linha " + $ide1.getLine() + ": identificador " + $ide1.getText() + $oid.simbolo + " nao declarado\n";
+                    }
                     if($oid.simbolo.equals("")) 
                         $tipoSimbolo = pilhaDeTabelas.topo().getTipoSimbolo($simbolo);
                     else
@@ -604,9 +610,10 @@ parcela_unario  // retorna um símbolo, seu tipo e a linha em que foi declarado
                   {
                     $simbolo += $ide2.getText() + $cpa.outrosIdentificadores;
                     $linha = $ide2.getLine();
-                    if (!pilhaDeTabelas.existeSimbolo($simbolo))
+                    if (!pilhaDeTabelas.existeSimbolo($simbolo)){ 
                       erro += "Linha " + $ide2.getLine() + ": identificador " + $simbolo + " nao declarado \n";
-                    else
+                    
+                    } else
                     {
                       if ($cpa.tipoSimbolo.equals("NONE"))
                         $tipoSimbolo = pilhaDeTabelas.topo().getTipoSimbolo($simbolo);

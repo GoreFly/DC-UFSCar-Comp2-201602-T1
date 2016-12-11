@@ -1,17 +1,3 @@
 Linha 13: atribuicao nao compativel para colidiu
-Linha 16: identificador distancia nao declarado
-Linha 16: identificador espessura nao declarado
-Linha 16: identificador altura nao declarado
-Linha 19: identificador distancia nao declarado 
-Linha 19: identificador momento1 nao declarado
-Linha 20: identificador distancia nao declarado 
-Linha 20: identificador espessura nao declarado 
-Linha 20: identificador momento2 nao declarado
-Linha 23: identificador alturaProjetil1 nao declarado
-Linha 25: identificador alturaProjetil2 nao declarado
-Linha 28: identificador alturaProjetil1 nao declarado 
-Linha 28: identificador altura nao declarado 
-Linha 28: identificador alturaProjetil2 nao declarado 
-Linha 28: identificador altura nao declarado 
 Linha 31: identificador colisao nao declarado 
 Fim da compilacao

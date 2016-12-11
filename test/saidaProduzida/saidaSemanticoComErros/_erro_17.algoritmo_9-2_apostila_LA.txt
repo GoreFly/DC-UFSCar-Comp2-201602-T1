@@ -1,18 +1,5 @@
+ENTROU NO TIPO
 Linha 13: atribuicao nao compativel para valor1
 Linha 14: atribuicao nao compativel para valor2
-Linha 16: identificador resto nao declarado
-Linha 18: identificador resto nao declarado 
-Linha 18: atribuicao nao compativel para valor2
-Linha 19: identificador resto nao declarado 
 Linha 29: identificador  simplifiqueRacional ja declarado anteriormente
-Linha 42: identificador resultado nao declarado
-Linha 45: identificador resultado nao declarado
-Linha 47: identificador resultado nao declarado 
-Linha 50: identificador resultado.numerador nao declarado 
-Linha 50: identificador resultado.denominador nao declarado 
-Linha 53: identificador resultado nao declarado
-Linha 54: identificador resultado nao declarado
-Linha 56: identificador resultado nao declarado 
-Linha 59: identificador resultado.numerador nao declarado 
-Linha 59: identificador resultado.denominador nao declarado 
 Fim da compilacao
