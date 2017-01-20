@@ -33,9 +33,9 @@ ESPACOS       : (' ' | '\t' | '\r' | '\n') {  skip(); }
               ;
 
 NAO_COMENTARIO: '{' ~('\r' | '\n' | '}')* '\n'
-                { stop("Linha " + getLine() + ": comentario nao fechado"); }
+                { stop("Linha " + getLine() + ": comentario nao fechado\nFim da compilacao\n"); }
               ;
-ERRO          : . { stop("Linha " + getLine() + ": " + getText() + " - simbolo nao identificado\n"); }
+ERRO          : . { stop("Linha " + getLine() + ": " + getText() + " - simbolo nao identificado\nFim da compilacao\n"); }
               ;
 
 /******************* SINTATICO E SEMÂNTICO ********************/
@@ -404,7 +404,7 @@ cmd           returns [String tipoComando]
                 {
                   $tipoComando = "caso";
                 }
-              | 'para' IDENTIFICADOR '<-' exp_aritmetica 'ate' exp_aritmetica 'faca' comandos 'fim-para'
+              | 'para' IDENTIFICADOR '<-' exp_aritmetica 'ate' exp_aritmetica 'faca' comandos 'fim_para'
                 {
                   $tipoComando = "para";
                 }

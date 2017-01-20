@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 /**
  *
@@ -36,13 +37,24 @@ public class Principal {
         parser.addErrorListener(mel);
         
         try {
-            parser.programa();
-        } 
+            LAParser.ProgramaContext raiz = parser.programa();
+            GeradorDeCodigo gdc = new GeradorDeCodigo(out);
+            ParseTreeWalker ptw = new ParseTreeWalker();
+            ptw.walk(gdc, raiz);
+            
+        }
+        // sintatico
+        catch(ParseCancellationException pce) {
+             if(pce.getMessage() != null && !out.modificado)
+                out.print(pce.getMessage());
+        }
+        // semantico
         catch(RuntimeException re) {
             if(re.getMessage() != null && !out.modificado)
                 out.print(re.getMessage());
+            out.println("Fim da compilacao");
         }
-        out.println("Fim da compilacao");
+        
         
         PrintWriter pw = new PrintWriter(arquivoSaida);
         

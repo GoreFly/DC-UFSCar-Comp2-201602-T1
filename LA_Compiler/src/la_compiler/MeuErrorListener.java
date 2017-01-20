@@ -8,6 +8,7 @@ import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
 import org.antlr.v4.runtime.dfa.DFA;
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 
 /**
  *
@@ -30,8 +31,10 @@ public class MeuErrorListener implements ANTLRErrorListener {
         tkt = (tkt.equals("<EOF>")) ? "EOF" : tkt;
         
         if(!saida.modificado) {
-        saida.println("Linha " + i + ": erro sintatico proximo a " + tkt);
+            saida.println("Linha " + i + ": erro sintatico proximo a " + tkt);
+            saida.println("Fim da compilacao");
         }
+        throw new ParseCancellationException("");
     }
 
     @Override
