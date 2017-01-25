@@ -1,0 +1,50 @@
+script::PizzariaDelivery
+{
+  authors:
+    Fulano, Ciclano
+  end_authors
+
+  characters:
+    DonoDaPizzaria, Entregador, Cliente
+  end_characters
+
+  scenarios:
+    CasaDoCliente, Pizzaria
+  end_scenarios
+
+  sceneorder:
+    PedidoDaPizza,EntregaDaPizza
+  end_sceneorder
+
+  scene::EntregaDaPizza
+  {
+    scenario:
+      CasaDoCliente
+    end_scenario
+
+    "<Entregador> estaciona sua moto em frente à casa do <Cliente>. Então salta do veículo e caminha até o interfone da residência, o tocando."
+
+    <Cliente>: "Quem é?"
+    <Entregador>: Oi, sua pizza chegou.#end
+    <Cliente>: Ok, já estou indo.#end
+
+    * <Cliente> abre a porta da casa, recebe a pizza e paga o <Entregador>, deixando uma generosa gorjeta. *
+  }
+
+  scene::PedidoDaPizza
+  {
+    scenario:
+      Pizzaria
+    end_scenario
+
+    * O telefone começa a tocar na Pizzaria. O <DonoDaPizzaria> corre para atendê-lo. *
+
+    <DonoDaPizzaria>: *Alô?*
+    <Cliente>: Oi, eu gostaria de pedir uma pizza de frango com catupiry.#end
+    <DonoDaPizzaria>: Qual o endereço?#end
+    <Cliente>: Rua Sesamo, 123.#end
+    <DonoDaPizzaria>: Seu pedido ficou 40 reais e será entregue dentro de 1h. Obrigado pela preferência!#end
+    
+    *<DonoDaPizzaria> desliga o telefone. *
+  }
+}
