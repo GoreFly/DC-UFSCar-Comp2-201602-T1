@@ -24,8 +24,6 @@ public class Principal {
 
     public static void main(String args[]) throws FileNotFoundException, IOException {
         String arquivoEntrada = args[0];
-        String arquivoSaida = args[1];
-        
         ANTLRInputStream ais = new ANTLRInputStream(new FileInputStream(arquivoEntrada));
         SSLLexer lexer = new SSLLexer(ais);
         CommonTokenStream cts = new CommonTokenStream(lexer);
@@ -54,10 +52,5 @@ public class Principal {
 //        }
         
         System.out.print(out.getTexto());
-        PrintWriter pw = new PrintWriter(arquivoSaida);
-        
-        pw.print(out.getTexto());
-        
-        pw.close();
     }
 }
