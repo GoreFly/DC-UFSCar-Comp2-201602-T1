@@ -22,7 +22,7 @@ script:RouboSapato
       Rua
     end-scenario
 
-    * <Marie>, ao passear pela rua, avista um sapato de salto-alto roxo em uma de suas lojas favoritas de sapatos. Ela gosta muito do sapato, mas se frustra assim que vê o preço do mesmo. *
+    *<Marie>, ao passear pela rua, avista um sapato de salto-alto roxo em uma de suas lojas favoritas de sapatos. Ela gosta muito do sapato, mas se frustra assim que vê o preço do mesmo.*
   }
 
   scene::MarieRoubaSapato
@@ -31,17 +31,17 @@ script:RouboSapato
       Loja
     end-scenario
 
-    <Vendedora>: Olá! Seja bem-vinda. Posso ajudá-la?
-    <Marie>: Olá. Pode sim. Gostaria de provar aquele sapato de salto-alto roxo da vitrine. Número 36, por favor.
-    <Vendedora>: É claro. Só um momento.
+    <Vendedora>: "Olá! Seja bem-vinda. Posso ajudá-la?"
+    <Marie>: "Olá. Pode sim. Gostaria de provar aquele sapato de salto-alto roxo da vitrine. Número 36, por favor."
+    <Vendedora>: "É claro. Só um momento."
 
-    * A <Vendedora> vai buscar o sapato na vitrine e logo retorna. *
+    *A <Vendedora> vai buscar o sapato na vitrine e logo retorna.*
 
-    <Vendedora>: Que sorte! Esse é 36. Tenho um outro modelo da mesma cor no estoque, quer ver?
-    <Marie>: Pode ser!
-    <Vendedora>: Vou buscá-lo. Só um instante.
+    <Vendedora>: "Que sorte! Esse é 36. Tenho um outro modelo da mesma cor no estoque, quer ver?"
+    <Marie>: "Pode ser!"
+    <Vendedora>: "Vou buscá-lo. Só um instante."
 
-    * Assim que a <Vendedora> foi para o estoque, Marie pegou os sapatos que ela tinha gostado e saiu da loja furtivamente. *
+    *Assim que a <Vendedora> foi para o estoque, Marie pegou os sapatos que ela tinha gostado e saiu da loja furtivamente.*
   }
 
   scene::MarieVaiNaFesta
@@ -50,14 +50,14 @@ script:RouboSapato
       Festa
     end-scenario
 
-    * Marie chega na festa usando os sapatos que ela roubou e logo avista sua prima. *
+    *Marie chega na festa usando os sapatos que ela roubou e logo avista sua prima.*
 
-    <Marie>: Oi, prima!
-    <Prima>: Olá querida! Quanto tempo! Nossa, que sapato lindo!
-    <Marie>: Obrigada, prima! É da Loja!
-    <Prima>: Nossa! Os sapatos de lá são bem caros.
-    <Marie>: É, pois é.
+    <Marie>: "Oi, prima!"
+    <Prima>: "Olá querida! Quanto tempo! Nossa, que sapato lindo!"
+    <Marie>: "Obrigada, prima! É da Loja!"
+    <Prima>: "Nossa! Os sapatos de lá são bem caros."
+    <Marie>: "É, pois é."
 
-    * Marie, então, vai pegar um drink. *
+    *Marie, então, vai pegar um drink.*
   }
 }

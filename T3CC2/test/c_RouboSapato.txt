@@ -35,7 +35,7 @@ script::RouboSapato
     <Marie>: "Olá. Pode sim. Gostaria de provar aquele sapato de salto-alto roxo da vitrine. Número 36, por favor."
     <Vendedora>: "É claro. Só um momento."
 
-    *<Vendedora> vai buscar o sapato na vitrine e logo retorna.*
+    *A <Vendedora> vai buscar o sapato na vitrine e logo retorna.*
 
     <Vendedora>: "Que sorte! Esse é 36. Tenho um outro modelo da mesma cor no estoque, quer ver?"
     <Marie>: "Pode ser!"
@@ -50,9 +50,9 @@ script::RouboSapato
       Festa
     end-scenario
 
-    *<Marie> chega na festa usando os sapatos que ela roubou e logo avista sua prima.*
+    *Marie chega na festa usando os sapatos que ela roubou e logo avista sua prima.*
 
-    <Marie>: "Oi, prima!
+    <Marie>: "Oi, prima!"
     <Prima>: "Olá querida! Quanto tempo! Nossa, que sapato lindo!"
     <Marie>: "Obrigada, prima! É da Loja!"
     <Prima>: "Nossa! Os sapatos de lá são bem caros."
