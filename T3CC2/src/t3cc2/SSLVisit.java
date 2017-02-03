@@ -75,7 +75,7 @@ public class SSLVisit extends SSLBaseVisitor<Void>{
     @Override
     public Void visitChamada_personagem(SSLParser.Chamada_personagemContext ctx) {
         if(tabela.getSimbolo(ctx.IDENTIFICADOR().getText()) == null){
-            throw new RuntimeException("Personagem " + ctx.IDENTIFICADOR().getText() + " não declarado");
+            throw new RuntimeException("Personagem " + ctx.IDENTIFICADOR().getText() + " não declarado(Linha " + ctx.getStart().getLine() + ")");
         }
         return null;
     }
@@ -83,7 +83,7 @@ public class SSLVisit extends SSLBaseVisitor<Void>{
     @Override
     public Void visitDecl_cenario(SSLParser.Decl_cenarioContext ctx){
         if(tabela.getSimbolo(ctx.IDENTIFICADOR().getText()) == null)
-            throw new RuntimeException("Cenário " + ctx.IDENTIFICADOR().getText() + " não declarado");
+            throw new RuntimeException("Cenário " + ctx.IDENTIFICADOR().getText() + " não declarado(Linha " + ctx.getStart().getLine() + ")");
         return null;
     }
     
@@ -102,7 +102,7 @@ public class SSLVisit extends SSLBaseVisitor<Void>{
             while(m.find()){
                 String character = m.group().replaceAll("[\\<\\>]", "");
                 if(tabela.getSimbolo(character) == null){
-                    throw new RuntimeException("Personagem : " + character +" nao declarado");
+                    throw new RuntimeException("Personagem : " + character +" nao declarado (Linha " + ctx.getStart().getLine() + ")");
                 }
             }
         }
