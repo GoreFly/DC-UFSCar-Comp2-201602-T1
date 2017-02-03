@@ -3,7 +3,7 @@ grammar SSL;
 
 /******************* LEXICO *********************/
     
- TKSCRIPT       : 'script::'
+TKSCRIPT        : 'script::'
                 ;
 TKSCENE         : 'scene::'
                 ;
@@ -15,9 +15,9 @@ TKSCENARIO      : 'scenario:'
                 ;
 TKENDSCENARIO   : 'end_scenario'
                 ;
-TKSCENARIOS      : 'scenarios:'
+TKSCENARIOS     : 'scenarios:'
                 ;
-TKENDSCENARIOS   : 'end_scenarios'
+TKENDSCENARIOS  : 'end_scenarios'
                 ;
 TKAUTHORS       : 'authors:'
                 ;
@@ -40,41 +40,37 @@ TKLCBRACKETS    : '{'
 TKRCBRACKETS    : '}'
                 ;
 
-STRING              : '"' (~('"'))* '"'
-                    ;
+STRING          : '"' (~('"'))* '"'
+                ;
 
-ACAO              : '*' (~('*'))* '*'
-                    ;
+ACAO            : '*' (~('*'))* '*'
+                ;
 
-IDENTIFICADOR       : ('a'..'z' | 'A'..'Z' | '_')('a'..'z' | 'A'..'Z' | '_' 
-                     | '0'..'9')*
-                   ;
+IDENTIFICADOR   : ('a'..'z' | 'A'..'Z' | '_')('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*
+                ;
 
-
-ESPACOS       : (' ' | '\t' | '\r' | '\n') {  skip(); } 
-              ;
-
-// Testar: tirar o '\n' do ESPACOS e colocar no meio das regras sintáticas onde pode ter enter, explicitamente
+ESPACOS         : (' ' | '\t' | '\r' | '\n') {  skip(); } 
+                ;
 
 /******************* SINTATICO ********************/
 
-script             : TKSCRIPT IDENTIFICADOR TKLCBRACKETS script_cont TKRCBRACKETS 
-                   ;
+script              : TKSCRIPT IDENTIFICADOR TKLCBRACKETS script_cont TKRCBRACKETS 
+                    ;
 
-script_cont        : decl_principais (cena)+
-                   ;    
+script_cont         : decl_principais (cena)+
+                    ;    
 
-decl_principais    : decl_autores decl_personagens decl_cenarios ordem_cenas
-                   ; 
+decl_principais     : decl_autores decl_personagens decl_cenarios ordem_cenas
+                    ; 
 
-cena               : TKSCENE  IDENTIFICADOR TKLCBRACKETS  cena_cont TKRCBRACKETS 
-                   ;
+cena                : TKSCENE  IDENTIFICADOR TKLCBRACKETS  cena_cont TKRCBRACKETS 
+                    ;
 
-cena_cont          : decl_cenario cmd
-                   ;     
+cena_cont           : decl_cenario cmd
+                    ;     
 
-cmd                : ACAO cmd | fala cmd |
-                   ;
+cmd                 : ACAO cmd | fala cmd |
+                    ;
 
 chamada_personagem : TKLT IDENTIFICADOR TKGT
                    ;

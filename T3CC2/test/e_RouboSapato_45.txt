@@ -2,25 +2,25 @@ script:RouboSapato
 {
   authors:
     Pedro, Taymara
-  end-authors
+  end_authors
 
   characters:
     Marie, Vendedora, Prima
-  end-characters
+  end_characters
 
   scenarios:
     Rua, LojaDeSapatos, Festa
-  end-scenarios
+  end_scenarios
 
   sceneorder:
     MarieAvistaSapato, MarieRoubaSapato, MarieVaiNaFesta
-  end-sceneorder
+  end_sceneorder
 
   scene::MarieAvistaSapato
   {
     scenario:
       Rua
-    end-scenario
+    end_scenario
 
     *<Marie>, ao passear pela rua, avista um sapato de salto-alto roxo em uma de suas lojas favoritas de sapatos. Ela gosta muito do sapato, mas se frustra assim que vê o preço do mesmo.*
   }
@@ -29,7 +29,7 @@ script:RouboSapato
   {
     scenario:
       Loja
-    end-scenario
+    end_scenario
 
     <Vendedora>: "Olá! Seja bem-vinda. Posso ajudá-la?"
     <Marie>: "Olá. Pode sim. Gostaria de provar aquele sapato de salto-alto roxo da vitrine. Número 36, por favor."
@@ -48,7 +48,7 @@ script:RouboSapato
   {
     scenario:
       Festa
-    end-scenario
+    end_scenario
 
     *Marie chega na festa usando os sapatos que ela roubou e logo avista sua prima.*
 

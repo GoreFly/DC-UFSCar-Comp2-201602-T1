@@ -2,25 +2,25 @@ script::PizzariaDelivery
 {
   authors:
     Fulano, Ciclano
-  end-authors
+  end_authors
 
   characters:
     DonoDaPizzaria, Entregador, Cliente
-  end-characters
+  end_characters
 
   scenarios:
     CasaDoCliente, Pizzaria
-  end-scenarios
+  end_scenarios
 
   sceneorder:
     PedidoDaPizza, EntregaDaPizza
-  end-sceneorder
+  end_sceneorder
 
   scene::EntregaDaPizza
   {
     scenario:
       CasaDoCliente
-    end-scenario
+    end_scenario
 
     *<Entregador> estaciona sua moto em frente à casa do <Cliente>. Então salta do veículo e caminha até o interfone da residência, o tocando.*
 
