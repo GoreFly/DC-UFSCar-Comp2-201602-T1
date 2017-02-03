@@ -1,13 +1,14 @@
-package la_compiler;
+package t3cc2;
 
 /**
  *
  * @author daniel
  */
 public class EntradaTabelaDeSimbolos {
-    private String nome, tipo;
+    private String nome;
+    private TipoVariavel tipo; 
     
-    public EntradaTabelaDeSimbolos(String nome, String tipo) {
+    public EntradaTabelaDeSimbolos(String nome, TipoVariavel tipo) {
         this.nome = nome;
         this.tipo = tipo;
     }
@@ -16,7 +17,7 @@ public class EntradaTabelaDeSimbolos {
         return nome;
     }
     
-    public String getTipo() {
+    public TipoVariavel getTipo() {
         return tipo;
     }
     

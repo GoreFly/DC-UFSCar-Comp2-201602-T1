@@ -1,4 +1,4 @@
-package la_compiler;
+package t3cc2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,31 +8,33 @@ import java.util.List;
  * @author daniel
  */
 public class TabelaDeSimbolos {
-    private String escopo;
     private List<EntradaTabelaDeSimbolos> simbolos;
     
-    public TabelaDeSimbolos(String escopo) {
+    public TabelaDeSimbolos() {
         simbolos = new ArrayList<EntradaTabelaDeSimbolos>();
-        this.escopo = escopo;
     }
     
-    public void adicionarSimbolo(String nome, String tipo) {
+    public int adicionarSimbolo(String nome, TipoVariavel tipo) {
+        if(jaFoiDeclarado(nome))
+            throw new RuntimeException("Erro Semantico: Variavel " + nome + "ja foi declarado");
+        
         simbolos.add(new EntradaTabelaDeSimbolos(nome,tipo));
+        return simbolos.size()-1;
     }
     
-    public void adicionarSimbolos(List<String> nomes, String tipo) {
+    public boolean jaFoiDeclarado(String nome) {
+        for(EntradaTabelaDeSimbolos etds:simbolos) {
+            if(etds.getNome().equals(nome))
+                return true;
+            }
+        return false;
+    }
+
+    
+    public void adicionarSimbolos(List<String> nomes, TipoVariavel tipo) {
         for(String s:nomes) {
             simbolos.add(new EntradaTabelaDeSimbolos(s, tipo));
         }
-    }
-    
-    public boolean existeSimbolo(String nome) {
-        for(EntradaTabelaDeSimbolos etds:simbolos) {
-            if(etds.getNome().equals(nome)) {
-                return true;
-            }
-        }
-        return false;
     }
     
     // retorna um simbolo
@@ -46,19 +48,14 @@ public class TabelaDeSimbolos {
     }
     
     // retorna tipo do simbolo
-    public String getTipoSimbolo(String nome) {
+    public TipoVariavel getTipoSimbolo(String nome) {
         for (EntradaTabelaDeSimbolos etds:simbolos) {
             if (etds.getNome().equals(nome)) {
                 return etds.getTipo();
             }
         }
         
-        return "NONE";
-    }
-    
-    // retorna o escopo
-    public String getEscopo() {
-        return this.escopo;
+        return null;
     }
     
     // retorna lista com os nomes dos simbolos
@@ -70,14 +67,6 @@ public class TabelaDeSimbolos {
         return atribs;
     }
     
-    // retorna lista com os tipos dos simbolos
-    public List<String> getTiposSimbolos() {
-        List<String> atribs = new ArrayList<String>();
-        for (int i = 0; i < simbolos.size(); i++) 
-            atribs.add(simbolos.get(i).getTipo());
-        
-        return atribs;
-    }
     
     // retorna lista com os simbolos
     public List<EntradaTabelaDeSimbolos> getSimbolos() {
@@ -88,9 +77,28 @@ public class TabelaDeSimbolos {
         return atribs;
     }
     
+    //Remover entrada pelo nome
+    public boolean removeEntrada(String nome){
+        if(jaFoiDeclarado(nome)){
+            simbolos.remove(getSimbolo(nome));
+            return true;
+        }
+        return false;
+    }
+    
+    //Retorna lista de entradas do tipo recebido
+    public List<EntradaTabelaDeSimbolos> getEntradasTipo(TipoVariavel tipo){
+        List<EntradaTabelaDeSimbolos> lista = new ArrayList<EntradaTabelaDeSimbolos>();
+        for(EntradaTabelaDeSimbolos entrada : simbolos){
+            if(entrada.getTipo()== tipo)
+                lista.add(entrada);
+        }
+        return lista;
+    }
+    
     @Override
     public String toString() {
-        String ret = "Escopo: "+escopo;
+        String ret = "";
         for(EntradaTabelaDeSimbolos etds:simbolos) {
             ret += "\n   "+etds;
         }

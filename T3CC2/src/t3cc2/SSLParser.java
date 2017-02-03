@@ -114,6 +114,11 @@ public class SSLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SSLListener ) ((SSLListener)listener).exitScript(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SSLVisitor ) return ((SSLVisitor<? extends T>)visitor).visitScript(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ScriptContext script() throws RecognitionException {
@@ -166,6 +171,11 @@ public class SSLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SSLListener ) ((SSLListener)listener).exitScript_cont(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SSLVisitor ) return ((SSLVisitor<? extends T>)visitor).visitScript_cont(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -230,6 +240,11 @@ public class SSLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SSLListener ) ((SSLListener)listener).exitDecl_principais(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SSLVisitor ) return ((SSLVisitor<? extends T>)visitor).visitDecl_principais(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Decl_principaisContext decl_principais() throws RecognitionException {
@@ -278,6 +293,11 @@ public class SSLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SSLListener ) ((SSLListener)listener).exitCena(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SSLVisitor ) return ((SSLVisitor<? extends T>)visitor).visitCena(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -329,6 +349,11 @@ public class SSLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SSLListener ) ((SSLListener)listener).exitCena_cont(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SSLVisitor ) return ((SSLVisitor<? extends T>)visitor).visitCena_cont(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Cena_contContext cena_cont() throws RecognitionException {
@@ -373,6 +398,11 @@ public class SSLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SSLListener ) ((SSLListener)listener).exitCmd(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SSLVisitor ) return ((SSLVisitor<? extends T>)visitor).visitCmd(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -436,6 +466,11 @@ public class SSLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SSLListener ) ((SSLListener)listener).exitChamada_personagem(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SSLVisitor ) return ((SSLVisitor<? extends T>)visitor).visitChamada_personagem(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Chamada_personagemContext chamada_personagem() throws RecognitionException {
@@ -485,6 +520,11 @@ public class SSLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SSLListener ) ((SSLListener)listener).exitDecl_personagens(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SSLVisitor ) return ((SSLVisitor<? extends T>)visitor).visitDecl_personagens(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -553,6 +593,11 @@ public class SSLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SSLListener ) ((SSLListener)listener).exitDecl_cenarios(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SSLVisitor ) return ((SSLVisitor<? extends T>)visitor).visitDecl_cenarios(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Decl_cenariosContext decl_cenarios() throws RecognitionException {
@@ -613,6 +658,11 @@ public class SSLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SSLListener ) ((SSLListener)listener).exitDecl_cenario(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SSLVisitor ) return ((SSLVisitor<? extends T>)visitor).visitDecl_cenario(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Decl_cenarioContext decl_cenario() throws RecognitionException {
@@ -662,6 +712,11 @@ public class SSLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SSLListener ) ((SSLListener)listener).exitDecl_autores(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SSLVisitor ) return ((SSLVisitor<? extends T>)visitor).visitDecl_autores(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -730,6 +785,11 @@ public class SSLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SSLListener ) ((SSLListener)listener).exitOrdem_cenas(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SSLVisitor ) return ((SSLVisitor<? extends T>)visitor).visitOrdem_cenas(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Ordem_cenasContext ordem_cenas() throws RecognitionException {
@@ -791,6 +851,11 @@ public class SSLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SSLListener ) ((SSLListener)listener).exitFala(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SSLVisitor ) return ((SSLVisitor<? extends T>)visitor).visitFala(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
