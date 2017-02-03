@@ -29,7 +29,8 @@ public class SSLVisit extends SSLBaseVisitor<Void>{
         super.visitScript(ctx); //To change body of generated methods, choose Tools | Templates.
         List<EntradaTabelaDeSimbolos> check = new ArrayList<EntradaTabelaDeSimbolos>();
         check = tabela.getEntradasTipo(TipoVariavel.SCENE);
-        if (check != null){
+        if (!check.isEmpty()){
+            System.out.print(check.toString());
             String erro = "Cena(s) ";
             for(EntradaTabelaDeSimbolos entrada : check)
                 erro += entrada.getNome() + " ";

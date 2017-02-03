@@ -30,29 +30,39 @@ public class Principal {
         CommonTokenStream cts = new CommonTokenStream(lexer);
         SSLParser parser = new SSLParser(cts);
         Saida out = new Saida();
+        Saida scriptGeral = new Saida();
         
         try {
             SSLParser.ScriptContext raiz = parser.script();
             SSLVisit visitor = new SSLVisit();
             visitor.visitScript(raiz);
-//            GeradorDeCodigo gdc = new GeradorDeCodigo(out);
-//            ParseTreeWalker ptw = new ParseTreeWalker();
-//            ptw.walk(gdc, raiz);
+            GeradorDeCodigo gdc = new GeradorDeCodigo(scriptGeral);
+            ParseTreeWalker ptw = new ParseTreeWalker();
+            ptw.walk(gdc, raiz);
             
         }
         // sintatico
         catch(ParseCancellationException pce) {
              if(pce.getMessage() != null && !out.modificado)
                 out.print(pce.getMessage());
+             System.out.print(out.getTexto());
         }
         // semantico
         catch(RuntimeException re) {
-            //re.printStackTrace();
+            re.printStackTrace();
             if(re.getMessage() != null && !out.modificado)
                 out.print(re.getMessage());
             out.println("\nFim da compilacao");
+            System.out.print(out.getTexto());
         }
-        
-        System.out.print(out.getTexto());
+        if(scriptGeral.modificado){
+            try{
+                PrintWriter writer = new PrintWriter("scriptGeral.html", "UTF-8");
+                writer.print(scriptGeral.getTexto());
+                writer.close();
+            } catch (IOException e) {
+                // do something
+            }
+        }
     }
 }
