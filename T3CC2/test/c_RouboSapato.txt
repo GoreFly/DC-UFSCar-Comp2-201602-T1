@@ -22,26 +22,7 @@ script::RouboSapato
       Rua
     end_scenario
 
-    *<Marie>, ao passear pela rua, avista um sapato de salto-alto roxo em uma de suas lojas favoritas de sapatos. Ela gosta muito do sapato, mas se frustra assim que v√™ o pre√ßo do mesmo.*
-  }
-
-  scene::MarieRoubaSapato
-  {
-    scenario:
-      Loja
-    end_scenario
-
-    <Vendedora>: "Ol√°! Seja bem-vinda. Posso ajud√°-la?"
-    <Marie>: "Ol√°. Pode sim. Gostaria de provar aquele sapato de salto-alto roxo da vitrine. N√∫mero 36, por favor."
-    <Vendedora>: "√â claro. S√≥ um momento."
-
-    *A <Vendedora> vai buscar o sapato na vitrine e logo retorna.*
-
-    <Vendedora>: "Que sorte! Esse √© 36. Tenho um outro modelo da mesma cor no estoque, quer ver?"
-    <Marie>: "Pode ser!"
-    <Vendedora>: "Vou busc√°-lo. S√≥ um instante."
-
-    *Assim que a <Vendedora> foi para o estoque, Marie pegou os sapatos que ela tinha gostado e saiu da loja furtivamente.*
+    *<Marie>, ao passear pela rua, avista um sapato de salto-alto roxo em uma de suas lojas favoritas de sapatos. Ela gosta muito do sapato, mas se frustra assim que vÍ o preÁo do mesmo.*
   }
 
   scene::MarieVaiNaFesta
@@ -53,11 +34,31 @@ script::RouboSapato
     *Marie chega na festa usando os sapatos que ela roubou e logo avista sua prima.*
 
     <Marie>: "Oi, prima!"
-    <Prima>: "Ol√° querida! Quanto tempo! Nossa, que sapato lindo!"
-    <Marie>: "Obrigada, prima! √â da Loja!"
-    <Prima>: "Nossa! Os sapatos de l√° s√£o bem caros."
-    <Marie>: "√â, pois √©."
+    <Prima>: "Ol· querida! Quanto tempo! Nossa, que sapato lindo!"
+    <Marie>: "Obrigada, prima! … da Loja!"
+    <Prima>: "Nossa! Os sapatos de l· s„o bem caros."
+    <Marie>: "…, pois È."
 
-    *Marie, ent√£o, vai pegar um drink.*
+    *Marie, ent„o, vai pegar um drink.*
+    <Marie>: "Boa noite."
+  }
+
+  scene::MarieRoubaSapato
+  {
+    scenario:
+      LojaDeSapatos
+    end_scenario
+
+    <Vendedora>: "Ol·! Seja bem-vinda. Posso ajud·-la?"
+    <Marie>: "Ol·. Pode sim. Gostaria de provar aquele sapato de salto-alto roxo da vitrine. N˙mero 36, por favor."
+    <Vendedora>: "… claro. SÛ um momento."
+
+    *A <Vendedora> vai buscar o sapato na vitrine e logo retorna.*
+
+    <Vendedora>: "Que sorte! Esse È 36. Tenho um outro modelo da mesma cor no estoque, quer ver?"
+    <Marie>: "Pode ser!"
+    <Vendedora>: "Vou busc·-lo. SÛ um instante."
+
+    *Assim que a <Vendedora> foi para o estoque, Marie pegou os sapatos que ela tinha gostado e saiu da loja furtivamente.*
   }
 }

@@ -334,8 +334,11 @@ public class SSLParser extends Parser {
 		public Decl_cenarioContext decl_cenario() {
 			return getRuleContext(Decl_cenarioContext.class,0);
 		}
-		public CmdContext cmd() {
-			return getRuleContext(CmdContext.class,0);
+		public List<CmdContext> cmd() {
+			return getRuleContexts(CmdContext.class);
+		}
+		public CmdContext cmd(int i) {
+			return getRuleContext(CmdContext.class,i);
 		}
 		public Cena_contContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -359,13 +362,26 @@ public class SSLParser extends Parser {
 	public final Cena_contContext cena_cont() throws RecognitionException {
 		Cena_contContext _localctx = new Cena_contContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_cena_cont);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(49);
 			decl_cenario();
-			setState(50);
-			cmd();
+			setState(51); 
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			do {
+				{
+				{
+				setState(50);
+				cmd();
+				}
+				}
+				setState(53); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			} while ( _la==TKLT || _la==ACAO );
 			}
 		}
 		catch (RecognitionException re) {
@@ -381,9 +397,6 @@ public class SSLParser extends Parser {
 
 	public static class CmdContext extends ParserRuleContext {
 		public TerminalNode ACAO() { return getToken(SSLParser.ACAO, 0); }
-		public CmdContext cmd() {
-			return getRuleContext(CmdContext.class,0);
-		}
 		public FalaContext fala() {
 			return getRuleContext(FalaContext.class,0);
 		}
@@ -410,29 +423,20 @@ public class SSLParser extends Parser {
 		CmdContext _localctx = new CmdContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_cmd);
 		try {
-			setState(58);
+			setState(57);
 			switch (_input.LA(1)) {
 			case ACAO:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(52);
+				setState(55);
 				match(ACAO);
-				setState(53);
-				cmd();
 				}
 				break;
 			case TKLT:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(54);
+				setState(56);
 				fala();
-				setState(55);
-				cmd();
-				}
-				break;
-			case TKRCBRACKETS:
-				enterOuterAlt(_localctx, 3);
-				{
 				}
 				break;
 			default:
@@ -479,11 +483,11 @@ public class SSLParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(60);
+			setState(59);
 			match(TKLT);
-			setState(61);
+			setState(60);
 			match(IDENTIFICADOR);
-			setState(62);
+			setState(61);
 			match(TKGT);
 			}
 		}
@@ -535,27 +539,27 @@ public class SSLParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(64);
+			setState(63);
 			match(TKCHARACTERS);
-			setState(65);
+			setState(64);
 			match(IDENTIFICADOR);
-			setState(70);
+			setState(69);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==TKCOMMA) {
 				{
 				{
-				setState(66);
+				setState(65);
 				match(TKCOMMA);
-				setState(67);
+				setState(66);
 				match(IDENTIFICADOR);
 				}
 				}
-				setState(72);
+				setState(71);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(73);
+			setState(72);
 			match(TKENDCHARACTERS);
 			}
 		}
@@ -607,27 +611,27 @@ public class SSLParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(75);
+			setState(74);
 			match(TKSCENARIOS);
-			setState(76);
+			setState(75);
 			match(IDENTIFICADOR);
-			setState(81);
+			setState(80);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==TKCOMMA) {
 				{
 				{
-				setState(77);
+				setState(76);
 				match(TKCOMMA);
-				setState(78);
+				setState(77);
 				match(IDENTIFICADOR);
 				}
 				}
-				setState(83);
+				setState(82);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(84);
+			setState(83);
 			match(TKENDSCENARIOS);
 			}
 		}
@@ -671,11 +675,11 @@ public class SSLParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(86);
+			setState(85);
 			match(TKSCENARIO);
-			setState(87);
+			setState(86);
 			match(IDENTIFICADOR);
-			setState(88);
+			setState(87);
 			match(TKENDSCENARIO);
 			}
 		}
@@ -727,27 +731,27 @@ public class SSLParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(90);
+			setState(89);
 			match(TKAUTHORS);
-			setState(91);
+			setState(90);
 			match(IDENTIFICADOR);
-			setState(96);
+			setState(95);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==TKCOMMA) {
 				{
 				{
-				setState(92);
+				setState(91);
 				match(TKCOMMA);
-				setState(93);
+				setState(92);
 				match(IDENTIFICADOR);
 				}
 				}
-				setState(98);
+				setState(97);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(99);
+			setState(98);
 			match(TKENDAUTHORS);
 			}
 		}
@@ -799,27 +803,27 @@ public class SSLParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(101);
+			setState(100);
 			match(TKSCENEORDER);
-			setState(102);
+			setState(101);
 			match(IDENTIFICADOR);
-			setState(107);
+			setState(106);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==TKCOMMA) {
 				{
 				{
-				setState(103);
+				setState(102);
 				match(TKCOMMA);
-				setState(104);
+				setState(103);
 				match(IDENTIFICADOR);
 				}
 				}
-				setState(109);
+				setState(108);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(110);
+			setState(109);
 			match(TKENDSCENEORDER);
 			}
 		}
@@ -865,11 +869,11 @@ public class SSLParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(112);
+			setState(111);
 			chamada_personagem();
-			setState(113);
+			setState(112);
 			match(TKCOLON);
-			setState(114);
+			setState(113);
 			match(STRING);
 			}
 		}
@@ -885,33 +889,33 @@ public class SSLParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\30w\4\2\t\2\4\3\t"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\30v\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4"+
 		"\f\t\f\4\r\t\r\4\16\t\16\3\2\3\2\3\2\3\2\3\2\3\2\3\3\3\3\6\3%\n\3\r\3"+
-		"\16\3&\3\4\3\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3\7\3\7"+
-		"\3\7\3\7\3\7\3\7\5\7=\n\7\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\7\tG\n\t\f\t"+
-		"\16\tJ\13\t\3\t\3\t\3\n\3\n\3\n\3\n\7\nR\n\n\f\n\16\nU\13\n\3\n\3\n\3"+
-		"\13\3\13\3\13\3\13\3\f\3\f\3\f\3\f\7\fa\n\f\f\f\16\fd\13\f\3\f\3\f\3\r"+
-		"\3\r\3\r\3\r\7\rl\n\r\f\r\16\ro\13\r\3\r\3\r\3\16\3\16\3\16\3\16\3\16"+
-		"\2\2\17\2\4\6\b\n\f\16\20\22\24\26\30\32\2\2p\2\34\3\2\2\2\4\"\3\2\2\2"+
-		"\6(\3\2\2\2\b-\3\2\2\2\n\63\3\2\2\2\f<\3\2\2\2\16>\3\2\2\2\20B\3\2\2\2"+
-		"\22M\3\2\2\2\24X\3\2\2\2\26\\\3\2\2\2\30g\3\2\2\2\32r\3\2\2\2\34\35\7"+
-		"\3\2\2\35\36\7\27\2\2\36\37\7\23\2\2\37 \5\4\3\2 !\7\24\2\2!\3\3\2\2\2"+
-		"\"$\5\6\4\2#%\5\b\5\2$#\3\2\2\2%&\3\2\2\2&$\3\2\2\2&\'\3\2\2\2\'\5\3\2"+
-		"\2\2()\5\26\f\2)*\5\20\t\2*+\5\22\n\2+,\5\30\r\2,\7\3\2\2\2-.\7\4\2\2"+
-		"./\7\27\2\2/\60\7\23\2\2\60\61\5\n\6\2\61\62\7\24\2\2\62\t\3\2\2\2\63"+
-		"\64\5\24\13\2\64\65\5\f\7\2\65\13\3\2\2\2\66\67\7\26\2\2\67=\5\f\7\28"+
-		"9\5\32\16\29:\5\f\7\2:=\3\2\2\2;=\3\2\2\2<\66\3\2\2\2<8\3\2\2\2<;\3\2"+
-		"\2\2=\r\3\2\2\2>?\7\21\2\2?@\7\27\2\2@A\7\22\2\2A\17\3\2\2\2BC\7\5\2\2"+
-		"CH\7\27\2\2DE\7\17\2\2EG\7\27\2\2FD\3\2\2\2GJ\3\2\2\2HF\3\2\2\2HI\3\2"+
-		"\2\2IK\3\2\2\2JH\3\2\2\2KL\7\6\2\2L\21\3\2\2\2MN\7\t\2\2NS\7\27\2\2OP"+
-		"\7\17\2\2PR\7\27\2\2QO\3\2\2\2RU\3\2\2\2SQ\3\2\2\2ST\3\2\2\2TV\3\2\2\2"+
-		"US\3\2\2\2VW\7\n\2\2W\23\3\2\2\2XY\7\7\2\2YZ\7\27\2\2Z[\7\b\2\2[\25\3"+
-		"\2\2\2\\]\7\13\2\2]b\7\27\2\2^_\7\17\2\2_a\7\27\2\2`^\3\2\2\2ad\3\2\2"+
-		"\2b`\3\2\2\2bc\3\2\2\2ce\3\2\2\2db\3\2\2\2ef\7\f\2\2f\27\3\2\2\2gh\7\r"+
-		"\2\2hm\7\27\2\2ij\7\17\2\2jl\7\27\2\2ki\3\2\2\2lo\3\2\2\2mk\3\2\2\2mn"+
-		"\3\2\2\2np\3\2\2\2om\3\2\2\2pq\7\16\2\2q\31\3\2\2\2rs\5\16\b\2st\7\20"+
-		"\2\2tu\7\25\2\2u\33\3\2\2\2\b&<HSbm";
+		"\16\3&\3\4\3\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\6\3\6\6\6\66\n\6"+
+		"\r\6\16\6\67\3\7\3\7\5\7<\n\7\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\7\tF\n\t"+
+		"\f\t\16\tI\13\t\3\t\3\t\3\n\3\n\3\n\3\n\7\nQ\n\n\f\n\16\nT\13\n\3\n\3"+
+		"\n\3\13\3\13\3\13\3\13\3\f\3\f\3\f\3\f\7\f`\n\f\f\f\16\fc\13\f\3\f\3\f"+
+		"\3\r\3\r\3\r\3\r\7\rk\n\r\f\r\16\rn\13\r\3\r\3\r\3\16\3\16\3\16\3\16\3"+
+		"\16\2\2\17\2\4\6\b\n\f\16\20\22\24\26\30\32\2\2o\2\34\3\2\2\2\4\"\3\2"+
+		"\2\2\6(\3\2\2\2\b-\3\2\2\2\n\63\3\2\2\2\f;\3\2\2\2\16=\3\2\2\2\20A\3\2"+
+		"\2\2\22L\3\2\2\2\24W\3\2\2\2\26[\3\2\2\2\30f\3\2\2\2\32q\3\2\2\2\34\35"+
+		"\7\3\2\2\35\36\7\27\2\2\36\37\7\23\2\2\37 \5\4\3\2 !\7\24\2\2!\3\3\2\2"+
+		"\2\"$\5\6\4\2#%\5\b\5\2$#\3\2\2\2%&\3\2\2\2&$\3\2\2\2&\'\3\2\2\2\'\5\3"+
+		"\2\2\2()\5\26\f\2)*\5\20\t\2*+\5\22\n\2+,\5\30\r\2,\7\3\2\2\2-.\7\4\2"+
+		"\2./\7\27\2\2/\60\7\23\2\2\60\61\5\n\6\2\61\62\7\24\2\2\62\t\3\2\2\2\63"+
+		"\65\5\24\13\2\64\66\5\f\7\2\65\64\3\2\2\2\66\67\3\2\2\2\67\65\3\2\2\2"+
+		"\678\3\2\2\28\13\3\2\2\29<\7\26\2\2:<\5\32\16\2;9\3\2\2\2;:\3\2\2\2<\r"+
+		"\3\2\2\2=>\7\21\2\2>?\7\27\2\2?@\7\22\2\2@\17\3\2\2\2AB\7\5\2\2BG\7\27"+
+		"\2\2CD\7\17\2\2DF\7\27\2\2EC\3\2\2\2FI\3\2\2\2GE\3\2\2\2GH\3\2\2\2HJ\3"+
+		"\2\2\2IG\3\2\2\2JK\7\6\2\2K\21\3\2\2\2LM\7\t\2\2MR\7\27\2\2NO\7\17\2\2"+
+		"OQ\7\27\2\2PN\3\2\2\2QT\3\2\2\2RP\3\2\2\2RS\3\2\2\2SU\3\2\2\2TR\3\2\2"+
+		"\2UV\7\n\2\2V\23\3\2\2\2WX\7\7\2\2XY\7\27\2\2YZ\7\b\2\2Z\25\3\2\2\2[\\"+
+		"\7\13\2\2\\a\7\27\2\2]^\7\17\2\2^`\7\27\2\2_]\3\2\2\2`c\3\2\2\2a_\3\2"+
+		"\2\2ab\3\2\2\2bd\3\2\2\2ca\3\2\2\2de\7\f\2\2e\27\3\2\2\2fg\7\r\2\2gl\7"+
+		"\27\2\2hi\7\17\2\2ik\7\27\2\2jh\3\2\2\2kn\3\2\2\2lj\3\2\2\2lm\3\2\2\2"+
+		"mo\3\2\2\2nl\3\2\2\2op\7\16\2\2p\31\3\2\2\2qr\5\16\b\2rs\7\20\2\2st\7"+
+		"\25\2\2t\33\3\2\2\2\t&\67;GRal";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

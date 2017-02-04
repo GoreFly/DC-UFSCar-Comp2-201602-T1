@@ -10,6 +10,7 @@ package t3cc2;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -30,13 +31,12 @@ public class Principal {
         CommonTokenStream cts = new CommonTokenStream(lexer);
         SSLParser parser = new SSLParser(cts);
         Saida out = new Saida();
-        Saida scriptGeral = new Saida();
         
         try {
             SSLParser.ScriptContext raiz = parser.script();
             SSLVisit visitor = new SSLVisit();
             visitor.visitScript(raiz);
-            GeradorDeCodigo gdc = new GeradorDeCodigo(scriptGeral);
+            GeradorDeCodigo gdc = new GeradorDeCodigo();
             ParseTreeWalker ptw = new ParseTreeWalker();
             ptw.walk(gdc, raiz);
             
@@ -55,14 +55,16 @@ public class Principal {
             out.println("\nFim da compilacao");
             System.out.print(out.getTexto());
         }
-        if(scriptGeral.modificado){
-            try{
-                PrintWriter writer = new PrintWriter("scriptGeral.html", "UTF-8");
-                writer.print(scriptGeral.getTexto());
-                writer.close();
-            } catch (IOException e) {
-                // do something
-            }
-        }
+        
+//        if(scriptGeral.modificado){
+//            try{
+//                PrintWriter writer = new PrintWriter("scriptGeral.html", "UTF-8");
+//                writer.print(scriptGeral.getTexto());
+//                writer.close();
+//            } catch (IOException e) {
+//                // do something
+//            }
+//        }
+        PrintStream i = new PrintStream(System.out, true, "windows-1252");
     }
 }

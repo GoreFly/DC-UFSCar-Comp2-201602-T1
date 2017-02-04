@@ -66,10 +66,10 @@ decl_principais     : decl_autores decl_personagens decl_cenarios ordem_cenas
 cena                : TKSCENE  IDENTIFICADOR TKLCBRACKETS  cena_cont TKRCBRACKETS 
                     ;
 
-cena_cont           : decl_cenario cmd
+cena_cont           : decl_cenario (cmd)+
                     ;     
 
-cmd                 : ACAO cmd | fala cmd |
+cmd                 : ACAO | fala 
                     ;
 
 chamada_personagem : TKLT IDENTIFICADOR TKGT
