@@ -90,7 +90,8 @@ public class SSLVisit extends SSLBaseVisitor<Void>{
     
     @Override 
     public Void visitCena(SSLParser.CenaContext ctx) {
-        tabela.removeEntrada(ctx.IDENTIFICADOR().getText());
+        if(!tabela.removeEntrada(ctx.IDENTIFICADOR().getText()))
+            throw new RuntimeException("Cena " + ctx.IDENTIFICADOR().getText() + " já declarado(Linha " + ctx.getStart().getLine() + ")");
         return visitChildren(ctx); 
     }
     

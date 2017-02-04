@@ -49,7 +49,7 @@ public class Principal {
         }
         // semantico
         catch(RuntimeException re) {
-            re.printStackTrace();
+//            re.printStackTrace();
             if(re.getMessage() != null && !out.modificado)
                 out.print(re.getMessage());
             out.println("\nFim da compilacao");
