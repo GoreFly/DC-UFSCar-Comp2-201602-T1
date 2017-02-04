@@ -1,5 +1,6 @@
 package t3cc2;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -106,12 +107,18 @@ public class GeradorDeCodigo extends SSLBaseListener {
     public void exitScript(SSLParser.ScriptContext ctx) {
         System.out.print(script.toString());
         printScript();
+        printCharacters();
         
     }
     
     public void printScript(){
         try{
-            PrintWriter saida = new PrintWriter("scriptGeral.html", "UTF-8");
+            String path = "Script";
+            path += script.getNome();
+            File file = new File(path);
+            file.mkdirs();
+            path += "/scriptGeral.html";
+            PrintWriter saida = new PrintWriter(path, "UTF-8");
             //Cabeçalho HTML
             saida.print("<!doctype html>\n");
             saida.print("\n");
@@ -176,7 +183,7 @@ public class GeradorDeCodigo extends SSLBaseListener {
                     saida.print("</h3>\n");
                     saida.print("\t\t\t\t<h4 class=\"scene-scenario-title\">Cenario: </h4><p class=\"scene-scenario\">");
                     saida.print(cenaTmp.getCenario());
-                    saida.print("</p>");
+                    saida.print("</p>\n");
                     saida.print("\t\t\t\t<h4 class=\"scene-characters\">Personagens: </h4><p>");
                     for(String personagem : cenaTmp.getPersonagens()){
                         saida.print(personagem);
@@ -190,7 +197,7 @@ public class GeradorDeCodigo extends SSLBaseListener {
                             saida.print(comando.getPersonagem());
                             saida.print(":</span> ");
                             saida.print(comando.getData());
-                            saida.print("</p>");
+                            saida.print("</p>\n");
                         }else{
                             saida.print("\t\t\t\t\t<p class=\"scene-cmd activity\">");
                             saida.print(comando.getData());
@@ -206,7 +213,87 @@ public class GeradorDeCodigo extends SSLBaseListener {
             saida.print("</html>");
             saida.close();
         } catch (IOException e) {
-            // do something
+            System.out.println(e.toString());
+        }
+    }
+    
+    public void printCharacters(){
+        try{
+            for(String character : script.getPersonagens()){
+                String path = "Script";
+                path += script.getNome();
+                path += "/script" + character + ".html";
+                PrintWriter saida = new PrintWriter(path, "UTF-8");
+                //Cabeçalho HTML
+                saida.print("<!doctype html>\n");
+                saida.print("\n");
+                saida.print("<html lang=\"en\">\n");
+                saida.print("<head>\n");
+                saida.print("\t<meta charset=\"utf-8\">\n");
+                saida.print("\n");
+                saida.print("\t<title>");
+                saida.print(script.getNome());
+                saida.print("</title>\n");
+                saida.print("\t<meta name=\"description\" content=\"");
+                saida.print(script.getNome());
+                saida.print(" script\">\n");
+                saida.print("\n");
+                saida.print("\t<link rel=\"stylesheet\" href=\"styles.css\">");
+                saida.print("</head>\n");
+                saida.print("\n");
+                //Corpo
+                saida.print("<body>\n");
+                //Titulo com o nome do script
+                saida.print("\t<h1 class=\"script-title\">");
+                saida.print(script.getNome());
+                saida.print("</h1>\n");
+                
+                //Cenas
+                saida.print("\t<div class=\"scenes\">\n");
+                saida.print("\t\t<h2 class=\"scenes-title\">Cenas</h2>\n");
+                for(String cena : script.getOrdemCenas()){
+                    Cena cenaTmp = script.getCena(cena);
+                    if(cenaTmp != null){
+                        if(cenaTmp.getPersonagens().contains(character)){
+                            saida.print("\t\t<div class=\"scene \">\n");
+                            saida.print("\t\t\t<h3 class=\"scene-title\">Cena: ");
+                            saida.print(cena);
+                            saida.print("</h3>\n");
+                            saida.print("\t\t\t\t<h4 class=\"scene-scenario-title\">Cenario: </h4><p class=\"scene-scenario\">");
+                            saida.print(cenaTmp.getCenario());
+                            saida.print("</p>\n");
+                            saida.print("\t\t\t\t<h4 class=\"scene-characters\">Personagens: </h4><p>");
+                            for(String personagem : cenaTmp.getPersonagens()){
+                                saida.print(personagem);
+                                saida.print(" ");
+                            }
+                            saida.print("</p>\n");
+                            saida.print("\t\t\t\t<div class=\"scene-cmd\">\n");
+                            for(Comando comando : cenaTmp.getComandos()){
+                                if(comando.getTipo().equals("FALA")){
+                                    saida.print("\t\t\t\t\t<p class=\"scene-cmd speech\"><span class=\"actor\">");
+                                    saida.print(comando.getPersonagem());
+                                    saida.print(":</span> ");
+                                    saida.print(comando.getData());
+                                    saida.print("</p>\n");
+                                }else{
+                                    saida.print("\t\t\t\t\t<p class=\"scene-cmd activity\">");
+                                    saida.print(comando.getData());
+                                    saida.print("</p>\n");
+                                }
+                            }
+                            saida.print("\t\t\t\t</div>\n");
+                            saida.print("\t\t</div>\n");
+                        }
+                    }
+                }
+                saida.print("\t</div>\n");
+                saida.print("</body>\n");
+                saida.print("</html>");
+                saida.close();
+            }
+        } catch (IOException e) {
+            System.out.println(e.toString());
         }
     }
     
