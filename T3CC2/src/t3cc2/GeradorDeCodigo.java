@@ -136,6 +136,82 @@ public class GeradorDeCodigo extends SSLBaseListener {
             saida.print("\t<link rel=\"stylesheet\" href=\"styles.css\">");
             saida.print("</head>\n");
             saida.print("\n");
+            //Style
+            saida.print("\t<style>\n");
+
+            saida.print("\t.script-title{\n");
+            saida.print("\t\tborder-style: solid;\n
+                         \t\twidth: 1000px;\n
+                         \t\tborder-width:0px;
+                         \t\ttext-align:center;
+                         \t\ttext-shadow: 1px 1px 0px #fff, 3px 2px 0px rgba(0,0,0,0.15);");         
+            saida.print("\t}");
+
+            saida.print("\t.authors, .characters, .scenarios{\n");
+            saida.print("\t\tfont-weight: lighter;\n
+                         \t\tborder-radius: 8px;\n
+                         \t\twidth: 1000px;\n
+                         \t\tborder: 1px solid black;\n
+                         \t\tpadding-left: 10px;\n
+                         \t\tmargin-bottom: 10px;\n");
+            saida.print("\t}");
+
+            saida.print("\t.authors-title, .characters-title, .scenarios-title{\n");
+            saida.print("\t\tmargin-top: 10px;\n");
+            saida.print("\t}");
+
+            saida.print("\t.author-item, .characters-item, .scenarios-item{\n");
+            saida.print("\t\tpadding-left: 1cm;\n");
+            saida.print("\t}");
+
+            saida.print("\t.scene{\n");
+            saida.print("\t\tpadding-left: 1cm;\n");
+            saida.print("\t}");
+
+            saida.print("\t.scene-scenario-title, .scene-characters{\n");
+            saida.print("\t\tpadding-left: 1cm;\n
+                         \t\tmargin-top: 10px;\n
+                         \t\tmargin-bottom: 10px;\n
+                         \t}");
+
+            saida.print("\t.scene-scenario{\n
+                         \t\tpadding-left: 2cm;\n
+                         \t\tfont-weight: lighter;\n
+                         \t}");
+
+            saida.print("\t.scene-cmd{\n
+                         \t\tpadding-left: 1cm;\n
+                         \t}");
+
+            saida.print("\t.scene-characters-item{\n
+                         \t\tpadding-left: 1cm;\n
+                         \t\tfont-weight: lighter;\n
+                         \t}");
+
+            saida.print("\t.actor{\n
+                         \t\tfont-weight: bold;\n
+                         \t}");
+
+            saida.print("\t.declare-title, .scenes-title{\n
+                         \t\twidth: 1000px;\n
+                         \t\ttext-shadow: 1px 1px 0px #fff, 5px 3px 0px rgba(0,0,0,0.15);\n
+                         \t\ttext-align: center;\n
+                         \t}");
+
+            saida.print("\t.scene{\n
+                         \t\tborder-radius: 8px;\n
+                         \t\twidth: 1000px;\n
+                         \t\tborder: 1px solid black;\n
+                         \t\tpadding: 10px;\n
+                         \t\tmargin-bottom: 10px;\n
+                         \t}");
+
+            saida.print("\t.scene-title{\n
+                         \t\tmargin-top: 10px;\n
+                         \t}");
+
+            saida.print("\t</style>\n");
+            saida.print("\n");
             //Corpo
             saida.print("<body>\n");
             //Titulo com o nome do script
@@ -184,7 +260,7 @@ public class GeradorDeCodigo extends SSLBaseListener {
                     saida.print("\t\t\t\t<h4 class=\"scene-scenario-title\">Cenario: </h4><p class=\"scene-scenario\">");
                     saida.print(cenaTmp.getCenario());
                     saida.print("</p>\n");
-                    saida.print("\t\t\t\t<h4 class=\"scene-characters\">Personagens: </h4><p>");
+                    saida.print("\t\t\t\t<h4 class=\"scene-characters\">Personagens: </h4><p class=\"scene-characters-item\">");
                     for(String personagem : cenaTmp.getPersonagens()){
                         saida.print(personagem);
                         saida.print(" ");
@@ -241,6 +317,82 @@ public class GeradorDeCodigo extends SSLBaseListener {
                 saida.print("\t<link rel=\"stylesheet\" href=\"styles.css\">");
                 saida.print("</head>\n");
                 saida.print("\n");
+                //Style
+                saida.print("\t<style>\n");
+
+                saida.print("\t.script-title{\n");
+                saida.print("\t\tborder-style: solid;\n
+                             \t\twidth: 1000px;\n
+                             \t\tborder-width:0px;
+                             \t\ttext-align:center;
+                             \t\ttext-shadow: 1px 1px 0px #fff, 3px 2px 0px rgba(0,0,0,0.15);");         
+                saida.print("\t}");
+
+                saida.print("\t.authors, .characters, .scenarios{\n");
+                saida.print("\t\tfont-weight: lighter;\n
+                             \t\tborder-radius: 8px;\n
+                             \t\twidth: 1000px;\n
+                             \t\tborder: 1px solid black;\n
+                             \t\tpadding-left: 10px;\n
+                             \t\tmargin-bottom: 10px;\n");
+                saida.print("\t}");
+
+                saida.print("\t.authors-title, .characters-title, .scenarios-title{\n");
+                saida.print("\t\tmargin-top: 10px;\n");
+                saida.print("\t}");
+
+                saida.print("\t.author-item, .characters-item, .scenarios-item{\n");
+                saida.print("\t\tpadding-left: 1cm;\n");
+                saida.print("\t}");
+
+                saida.print("\t.scene{\n");
+                saida.print("\t\tpadding-left: 1cm;\n");
+                saida.print("\t}");
+
+                saida.print("\t.scene-scenario-title, .scene-characters{\n");
+                saida.print("\t\tpadding-left: 1cm;\n
+                             \t\tmargin-top: 10px;\n
+                             \t\tmargin-bottom: 10px;\n
+                             \t}");
+
+                saida.print("\t.scene-scenario{\n
+                             \t\tpadding-left: 2cm;\n
+                             \t\tfont-weight: lighter;\n
+                             \t}");
+
+                saida.print("\t.scene-cmd{\n
+                             \t\tpadding-left: 1cm;\n
+                             \t}");
+
+                saida.print("\t.scene-characters-item{\n
+                             \t\tpadding-left: 1cm;\n
+                             \t\tfont-weight: lighter;\n
+                             \t}");
+
+                saida.print("\t.actor{\n
+                             \t\tfont-weight: bold;\n
+                             \t}");
+
+                saida.print("\t.declare-title, .scenes-title{\n
+                             \t\twidth: 1000px;\n
+                             \t\ttext-shadow: 1px 1px 0px #fff, 5px 3px 0px rgba(0,0,0,0.15);\n
+                             \t\ttext-align: center;\n
+                             \t}");
+
+                saida.print("\t.scene{\n
+                             \t\tborder-radius: 8px;\n
+                             \t\twidth: 1000px;\n
+                             \t\tborder: 1px solid black;\n
+                             \t\tpadding: 10px;\n
+                             \t\tmargin-bottom: 10px;\n
+                             \t}");
+
+                saida.print("\t.scene-title{\n
+                             \t\tmargin-top: 10px;\n
+                             \t}");
+
+                saida.print("\t</style>\n");
+                saida.print("\n");
                 //Corpo
                 saida.print("<body>\n");
                 //Titulo com o nome do script
@@ -262,7 +414,7 @@ public class GeradorDeCodigo extends SSLBaseListener {
                             saida.print("\t\t\t\t<h4 class=\"scene-scenario-title\">Cenario: </h4><p class=\"scene-scenario\">");
                             saida.print(cenaTmp.getCenario());
                             saida.print("</p>\n");
-                            saida.print("\t\t\t\t<h4 class=\"scene-characters\">Personagens: </h4><p>");
+                            saida.print("\t\t\t\t<h4 class=\"scene-characters\">Personagens: </h4><p class=\"scene-characters-item\">");
                             for(String personagem : cenaTmp.getPersonagens()){
                                 saida.print(personagem);
                                 saida.print(" ");
