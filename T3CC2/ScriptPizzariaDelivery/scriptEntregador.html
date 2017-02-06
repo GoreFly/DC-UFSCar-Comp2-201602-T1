@@ -9,6 +9,64 @@
 
 	<link rel="stylesheet" href="styles.css"></head>
 
+	<style>
+	.script-title{
+		border-style: solid;
+		width: 1000px;
+		border-width:0px;		text-align:center;		text-shadow: 1px 1px 0px #fff, 3px 2px 0px rgba(0,0,0,0.15);	}
+	.authors, .characters, .scenarios{
+		font-weight: lighter;
+		border-radius: 8px;
+		width: 1000px;
+		border: 1px solid black;
+		padding-left: 10px;
+		margin-bottom: 10px;
+	}
+	.authors-title, .characters-title, .scenarios-title{
+		margin-top: 10px;
+	}
+	.author-item, .characters-item, .scenarios-item{
+		padding-left: 1cm;
+	}
+	.scene{
+		padding-left: 1cm;
+	}
+	.scene-scenario-title, .scene-characters{
+		padding-left: 1cm;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	.scene-scenario{
+		padding-left: 2cm;
+		font-weight: lighter;
+	}
+	.scene-cmd{
+		padding-left: 1cm;
+	}
+	.scene-characters-item{
+		padding-left: 1cm;
+		font-weight: lighter;
+	}
+	.actor{
+		font-weight: bold;
+	}
+	.declare-title, .scenes-title{
+		width: 1000px;
+		text-shadow: 1px 1px 0px #fff, 5px 3px 0px rgba(0,0,0,0.15);
+		text-align: center;
+	}
+	.scene{
+		border-radius: 8px;
+		width: 1000px;
+		border: 1px solid black;
+		padding: 10px;
+		margin-bottom: 10px;
+	}
+	.scene-title{
+		margin-top: 10px;
+	}
+	</style>
+
 <body>
 	<h1 class="script-title">PizzariaDelivery</h1>
 	<div class="scenes">
@@ -16,7 +74,7 @@
 		<div class="scene ">
 			<h3 class="scene-title">Cena: EntregaDaPizza</h3>
 				<h4 class="scene-scenario-title">Cenario: </h4><p class="scene-scenario">CasaDoCliente</p>
-				<h4 class="scene-characters">Personagens: </h4><p>Entregador Cliente </p>
+				<h4 class="scene-characters">Personagens: </h4><p class="scene-characters-item">Entregador Cliente </p>
 				<div class="scene-cmd">
 					<p class="scene-cmd activity">Entregador estaciona sua moto em frente Ã  casa do Cliente. EntÃ£o salta do veÃ­culo e caminha atÃ© o interfone da residÃªncia, o tocando.</p>
 					<p class="scene-cmd speech"><span class="actor">Cliente:</span> "Quem Ã©?"</p>
